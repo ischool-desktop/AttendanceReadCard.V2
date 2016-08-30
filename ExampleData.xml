@@ -1,0 +1,10 @@
+﻿<OMRReadResult>
+    <AttendanceData>
+        <ClassName>訊三忠</ClassName>
+        <DateTime>2014/10/1</DateTime>
+        <Attendance DateTime="2014/10/1" SeatNo="1">
+					<Period Name="一" Reason="遲到"/>
+					<Period Name="五" Reason="曠課"/>
+        </Attendance>
+    </AttendanceData>
+</OMRReadResult>

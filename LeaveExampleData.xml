@@ -1,0 +1,12 @@
+﻿<OMRReadResult>
+	<AttendanceData>
+		<StudentNumber>714068</StudentNumber>
+		<AttendanceType>事</AttendanceType>
+		<Attendance DateTime="2014/10/1">
+			<Period Name="一" />
+		</Attendance>
+		<Attendance DateTime="2014/10/3">
+			<Period Name="五" />
+		</Attendance>
+	</AttendanceData>
+</OMRReadResult>

@@ -1,0 +1,175 @@
+﻿<OMRReadResult>
+    <AttendanceData>
+        <ClassName>資一甲</ClassName>
+        <DateTime>2012/6/13</DateTime>
+        <Attendance SeatNo="1">
+            <Period Name="一" Reason="遲到"/>
+        </Attendance>
+        <Attendance SeatNo="3">
+            <Period Name="三" Reason="遲到"/>
+        </Attendance>
+        <Attendance SeatNo="5"/>
+        <Attendance SeatNo="6"/>
+        <Attendance SeatNo="7"/>
+        <Attendance SeatNo="8"/>
+        <Attendance SeatNo="9"/>
+        <Attendance SeatNo="10"/>
+        <Attendance SeatNo="11"/>
+        <Attendance SeatNo="12"/>
+        <Attendance SeatNo="13"/>
+        <Attendance SeatNo="14">
+            <Period Name="五" Reason="曠課"/>
+        </Attendance>
+        <Attendance SeatNo="15">
+            <Period Name="五" Reason="曠課"/>
+        </Attendance>
+        <Attendance SeatNo="16">
+            <Period Name="五" Reason="曠課"/>
+        </Attendance>
+        <Attendance SeatNo="17">
+            <Period Name="五" Reason="曠課"/>
+        </Attendance>
+        <Attendance SeatNo="18">
+            <Period Name="五" Reason="曠課"/>
+        </Attendance>
+        <Attendance SeatNo="19">
+            <Period Name="五" Reason="曠課"/>
+        </Attendance>
+        <Attendance SeatNo="20">
+            <Period Name="五" Reason="曠課"/>
+        </Attendance>
+    </AttendanceData>
+    <AttendanceData>
+        <ClassName>表演{0}丙</ClassName>
+        <DateTime>2012/5/5</DateTime>
+        <Attendance SeatNo="1"/>
+        <Attendance SeatNo="2"/>
+        <Attendance SeatNo="3"/>
+        <Attendance SeatNo="4"/>
+        <Attendance SeatNo="5"/>
+        <Attendance SeatNo="6">
+            <Period Name="一" Reason="遲到"/>
+        </Attendance>
+        <Attendance SeatNo="7">
+            <Period Name="一" Reason="遲到"/>
+        </Attendance>
+        <Attendance SeatNo="8">
+            <Period Name="一" Reason="遲到"/>
+        </Attendance>
+        <Attendance SeatNo="9">
+            <Period Name="一" Reason="遲到"/>
+        </Attendance>
+        <Attendance SeatNo="10">
+            <Period Name="一" Reason="遲到"/>
+        </Attendance>
+        <Attendance SeatNo="11">
+            <Period Name="二" Reason="遲到"/>
+        </Attendance>
+        <Attendance SeatNo="12">
+            <Period Name="二" Reason="遲到"/>
+        </Attendance>
+        <Attendance SeatNo="13">
+            <Period Name="二" Reason="遲到"/>
+        </Attendance>
+        <Attendance SeatNo="14">
+            <Period Name="二" Reason="遲到"/>
+        </Attendance>
+        <Attendance SeatNo="15">
+            <Period Name="二" Reason="遲到"/>
+        </Attendance>
+    </AttendanceData>
+    <AttendanceData>
+        <ClassName>304</ClassName>
+        <DateTime>2012/8/15</DateTime>
+        <Attendance SeatNo="1"/>
+        <Attendance SeatNo="2"/>
+        <Attendance SeatNo="3"/>
+        <Attendance SeatNo="7">
+            <Period Name="三" Reason="曠課"/>
+        </Attendance>
+        <Attendance SeatNo="15"/>
+        <Attendance SeatNo="17"/>
+        <Attendance SeatNo="18"/>
+        <Attendance SeatNo="20"/>
+        <Attendance SeatNo="24"/>
+        <Attendance SeatNo="27"/>
+        <Attendance SeatNo="28">
+            <Period Name="二" Reason="遲到"/>
+        </Attendance>
+        <Attendance SeatNo="30"/>
+        <Attendance SeatNo="31"/>
+        <Attendance SeatNo="32"/>
+        <Attendance SeatNo="40">
+            <Period Name="一" Reason="曠課"/>
+            <Period Name="二" Reason="曠課"/>
+            <Period Name="三" Reason="曠課"/>
+            <Period Name="五" Reason="曠課"/>
+            <Period Name="六" Reason="曠課"/>
+        </Attendance>
+    </AttendanceData>
+    <AttendanceData>
+        <ClassName>304</ClassName>
+        <DateTime>2012/2/1</DateTime>
+        <Attendance SeatNo="1">
+            <Period Name="一" Reason="遲到"/>
+        </Attendance>
+        <Attendance SeatNo="2">
+            <Period Name="二" Reason="遲到"/>
+        </Attendance>
+        <Attendance SeatNo="3">
+            <Period Name="三" Reason="遲到"/>
+        </Attendance>
+        <Attendance SeatNo="4"/>
+        <Attendance SeatNo="5">
+            <Period Name="五" Reason="遲到"/>
+        </Attendance>
+        <Attendance SeatNo="6">
+            <Period Name="六" Reason="遲到"/>
+        </Attendance>
+        <Attendance SeatNo="7"/>
+        <Attendance SeatNo="8"/>
+        <Attendance SeatNo="9"/>
+        <Attendance SeatNo="10"/>
+        <Attendance SeatNo="11">
+            <Period Name="六" Reason="曠課"/>
+        </Attendance>
+        <Attendance SeatNo="12">
+            <Period Name="五" Reason="曠課"/>
+        </Attendance>
+        <Attendance SeatNo="13"/>
+        <Attendance SeatNo="14">
+            <Period Name="三" Reason="曠課"/>
+        </Attendance>
+        <Attendance SeatNo="15">
+            <Period Name="二" Reason="曠課"/>
+        </Attendance>
+        <Attendance SeatNo="16">
+            <Period Name="一" Reason="曠課"/>
+        </Attendance>
+        <Attendance SeatNo="17"/>
+    </AttendanceData>
+    <AttendanceData>
+        <ClassName>表演{0}甲</ClassName>
+        <DateTime>2012/1/11</DateTime>
+        <Attendance SeatNo="11">
+            <Period Name="二" Reason="遲到"/>
+        </Attendance>
+        <Attendance SeatNo="12">
+            <Period Name="二" Reason="曠課"/>
+        </Attendance>
+        <Attendance SeatNo="13">
+            <Period Name="三" Reason="遲到"/>
+        </Attendance>
+        <Attendance SeatNo="14">
+            <Period Name="三" Reason="曠課"/>
+        </Attendance>
+        <Attendance SeatNo="15"/>
+        <Attendance SeatNo="16"/>
+        <Attendance SeatNo="17">
+            <Period Name="五" Reason="遲到"/>
+        </Attendance>
+        <Attendance SeatNo="18">
+            <Period Name="五" Reason="曠課"/>
+        </Attendance>
+    </AttendanceData>
+</OMRReadResult>
