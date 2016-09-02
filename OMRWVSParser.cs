@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 using System.Xml.XPath;
+using Campus.Configuration;
 
 namespace AttendanceReadCard
 {
@@ -12,11 +13,12 @@ namespace AttendanceReadCard
     /// </summary>
     public class WVSOMRParser
     {
+       
 		//	解析「年級」之畫記
 		private sealed class GradeYearParser : Decorator
 		{
 			private readonly IEnumerable<int> Position = Enumerable.Range(4, 3);
-
+            
 			public override bool Validate()
 			{
 				int mark_count = 0;
@@ -86,11 +88,21 @@ namespace AttendanceReadCard
 		//	解析「點名日期--年」之畫記
 		private sealed class YearParser : Decorator
 		{
+            //2016/8/31  穎驊 新增動態依據讀卡上的起始年，使用者可以調整設定
+            ConfigData Config { get; set; }
+            
 			private readonly IEnumerable<int> Position = Enumerable.Range(17, 12);
 			public override bool Validate()
 			{
 				int mark_count = 0;
-				int mark_no = Program.StartYear;
+
+                //int mark_no = Program.StartYear;
+
+                //2016/8/31  穎驊 新增動態依據讀卡上的起始年，使用者可以調整設定，目前有104年、105年 可以在"設定"中改變
+                Config = Campus.Configuration.Config.App["學生出缺席讀卡設定"];
+
+                int mark_no = int.Parse(Config["讀卡起始年"]);
+
 				for (int i = 0; i < this.Position.Count(); i++)
 				{
 					if (this.Source.ElementAt(this.Position.ElementAt(i)) >= this.Level)
@@ -186,16 +198,23 @@ namespace AttendanceReadCard
 		//</Discipline>
 		private sealed class AttendanceParser : Decorator
 		{
+
+            ConfigData Config { get; set; }
+
 			//private readonly string[] PeriodMappings = new string[] { "早修/升旗", "第一節", "第二節", "第三節", "第四節", "午休", "第五節", "第六節", "第七節", "第八節" }; 
 			public override bool Validate()
 			{
+                //2016/9/1 穎驊筆記，就學生缺曠資料其起始點為35*6 +2 = 212
 				int start = 212;
 				int position = 0;
-				for(int i=0; i<50; i++)
+
+                //2016/9/1 穎驊筆記，支援最多可以掃60行
+				for(int i=0; i<60; i++)
 				{
 					XElement Discipline = new XElement("Discipline", new XAttribute("SeatNo", i + 1));
 					this.Message.Element("Success").Add(Discipline);
 					position = start + 35*i;
+
 					for (int j = 0; j <= 10; j++)
 					{
 						int count = 0;
@@ -205,19 +224,68 @@ namespace AttendanceReadCard
 							if (k == 2)
 								continue;
 
-							if (this.Source.ElementAt(position) >= this.Level)
-								count++;
+                            ////2016/9/1 穎驊筆記，終於看懂讀卡機他的邏輯，在整張紙上會有35*60的讀取點，每一個讀取點機器會偵測畫卡的濃淡並賦予值
+                            //比如說第213格有畫卡濃度4，就會有[213,4]的陣列出現，接下來就要比較我們設定的畫卡濃度閾值，畫到有多濃 (>= this.Level)才算是有效訊號，
+
+
+                            //if (this.Source.ElementAt(position) >= this.Level)
+                            //    count++;
+                            
+                            //2016/9/1 穎驊註解，由於恩正說要另外支援畫卡假別的種類，
+                            //原本畫卡的訊號是兩洞一組，1_0為遲到早退，1_1為曠課
+                            //恩正說，1_0、1_1 不再綁定價別，也因此每一節次的1_0、1_1可以有各自的意義，且要再支援0_1的畫卡格式
+                            //所以不再可以用單純數數量的方式來做
+
+                            if (this.Source.ElementAt(position) >= this.Level) 
+                            {
+                                //第一個洞有數到 >> +1
+                                if (k == 0) 
+                                {
+                                    count += 1;                                
+                                }
+
+                                //第二個洞有數到 >> +2
+                                if (k == 1) 
+                                {
+                                    count += 2;                                
+                                }                                                        
+                            }                               
 						}
+
 						XElement Period = new XElement("Period", new XAttribute("Name", Program.PeriodNameList[j]));
 						Discipline.Add(Period);
-						if (count == 1)
-						{
-							Period.Add(new XElement("Reason", "遲"));
-						}
-						if (count == 2)
-						{
-							Period.Add(new XElement("Reason", "缺"));
-						}
+
+                        //列出卡片上所有可設定節次。
+                        string[] periods = Program.PeriodNameList;
+                        
+                        //下面是舊的Code 單純數數量
+
+                        //if (count == 1)
+                        //{
+                        //    Period.Add(new XElement("Reason", "遲"));
+                        //}
+                        //if (count == 2)
+                        //{
+                        //    Period.Add(new XElement("Reason", "缺"));
+                        //}
+
+                        Config = Campus.Configuration.Config.App["學生出缺席讀卡設定"];
+
+                        //只畫第一洞
+                        if (count == 1)
+                        {
+                            Period.Add(new XElement("Reason", Config[Program.PeriodNameList[j] + "leave_1_0"]));
+                        }
+                        //只畫第二洞
+                        if (count == 2)
+                        {
+                            Period.Add(new XElement("Reason", Config[Program.PeriodNameList[j] + "leave_0_1"]));
+                        }
+                        //一洞+二洞都有畫
+                        if (count == 3)
+                        {
+                            Period.Add(new XElement("Reason", Config[Program.PeriodNameList[j]+"leave_1_1"]));
+                        }
 					}
 				}
 				return true & base.Validate();
@@ -309,6 +377,10 @@ namespace AttendanceReadCard
 		
 		private sealed class LeaveRangeParser : Decorator
 		{
+
+            //2016/8/31  穎驊 新增動態依據讀卡上的起始年，使用者可以調整設定
+            ConfigData Config { get; set; }
+
 			//	請假卡「請假日期--年(自)」之畫記的絕對位置
 			private readonly List<int> BeginYearPosition = new List<int> { 9, 44, 79, 114, 149, 184, 219, 254, 289, 324, 359, 394 };
 			//	請假卡「請假日期--月(自)」之畫記的絕對位置
@@ -363,13 +435,23 @@ namespace AttendanceReadCard
 
 				bool result = true;
 
+        
+
 				for (int i = 0; i < 12; i++)
 				{
 					//	請假日期--年(自)
 					if (this.Source.ElementAt(this.BeginYearPosition.ElementAt(i)) >= this.Level)
 					{
+          
+                      //2016/8/31  穎驊 新增動態依據讀卡上的起始年，使用者可以調整設定，目前有104年、105年 可以在"設定"中改變
+                        Config = Campus.Configuration.Config.App["學生出缺席讀卡設定"];
+               
 						begin_year_mark_count += 1;
-						begin_year_mark_no = Program.StartYear + i;
+                      //begin_year_mark_no = Program.StartYear + i;
+
+                        begin_year_mark_no = int.Parse(Config["讀卡起始年"])+i;
+
+
 					}
 					//	請假日期--月(自)
 					if (this.Source.ElementAt(this.BeginMonthPosition.ElementAt(i)) >= this.Level)
@@ -380,8 +462,14 @@ namespace AttendanceReadCard
 					//	請假日期--年(至)
 					if (this.Source.ElementAt(this.EndYearPosition.ElementAt(i)) >= this.Level)
 					{
+                        //2016/8/31  穎驊 新增動態依據讀卡上的起始年，使用者可以調整設定，目前有104年、105年 可以在"設定"中改變
+                        Config = Campus.Configuration.Config.App["學生出缺席讀卡設定"];
+
 						end_year_mark_count += 1;
-                        end_year_mark_no = Program.StartYear + i;
+                        //end_year_mark_no = Program.StartYear + i;
+
+                        end_year_mark_no = int.Parse(Config["讀卡起始年"]) + i;
+
 					}
 					//	請假日期--月(至)
 					if (this.Source.ElementAt(this.EndMonthPosition.ElementAt(i)) >= this.Level)

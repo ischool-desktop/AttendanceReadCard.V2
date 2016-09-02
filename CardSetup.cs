@@ -23,19 +23,26 @@ namespace AttendanceReadCard
                 Campus.Configuration.Config.App.Sync("學生出缺席讀卡設定");
                 ConfigData cd = Campus.Configuration.Config.App["學生出缺席讀卡設定"];
 
-                LateString = cd["遲"];
-                AbsenceString = cd["缺"];
+                //2016/9/2 穎驊註解，不再使用遲、缺
+                //LateString = cd["遲"];
+                //AbsenceString = cd["缺"];
 
                 if (cd["OverrideOption"] == "覆蓋現有資料")
                     OverrideData = true;
                 else
                     OverrideData = false; //預設是這個選項。
 
-                if (string.IsNullOrWhiteSpace(LateString))
-                    throw new Exception("讀卡設定缺少設定「遲」的對應缺曠類別。");
 
-                if (string.IsNullOrWhiteSpace(AbsenceString))
-                    throw new Exception("讀卡設定缺少設定「缺」的對應缺曠類別。");
+                //2016/9/2 穎驊註解，不再使用遲、缺
+
+                //if (string.IsNullOrWhiteSpace(LateString))
+                //    throw new Exception("讀卡設定缺少設定「遲」的對應缺曠類別。");
+
+                //if (string.IsNullOrWhiteSpace(AbsenceString))
+                //    throw new Exception("讀卡設定缺少設定「缺」的對應缺曠類別。");
+
+
+
 
                 //節次對照表。
                 PeriodMapping = new Dictionary<string, string>();
@@ -123,15 +130,22 @@ namespace AttendanceReadCard
         /// </summary>
         public Dictionary<string, int> PeriodIndex { get; private set; }
 
-        /// <summary>
-        /// 卡片上的「遲」的對應字串。
-        /// </summary>
-        public string LateString { get; private set; }
 
-        /// <summary>
-        /// 卡片上的「缺」對應字串。
-        /// </summary>
-        public string AbsenceString { get; private set; }
+
+        //2016/9/2 穎驊註解，不再使用遲、缺
+
+        ///// <summary>
+        ///// 卡片上的「遲」的對應字串。
+        ///// </summary>
+        //public string LateString { get; private set; }
+
+        ///// <summary>
+        ///// 卡片上的「缺」對應字串。
+        ///// </summary>
+        //public string AbsenceString { get; private set; }
+
+
+
 
         /// <summary>
         /// 是否覆蓋現有資料。
@@ -190,12 +204,28 @@ namespace AttendanceReadCard
 
 					newperiod.SetAttributeValue("Name", periodTitle);	//
 
-                    XElement reason = period.XPathSelectElement("Reason[.='缺']");
 
-                    if (reason != null) //不是「缺」
-                        newperiod.SetAttributeValue("Reason", AbsenceString);
-                    else //就是「遲」
-                        newperiod.SetAttributeValue("Reason", LateString);
+                    //XElement reason = period.XPathSelectElement("Reason[.='缺']");
+
+                    //if (reason != null) //不是「缺」
+                    //    newperiod.SetAttributeValue("Reason", AbsenceString);
+                    //else //就是「遲」
+                    //    newperiod.SetAttributeValue("Reason", LateString);
+
+
+                    //2016/9/2 穎驊更新，雖然這邊是寫["假別對照表"] ，但個人人覺得就功能而言比較像是缺曠項目對照表
+                    ConfigData absence = Campus.Configuration.Config.App["假別對照表"];
+                    XElement xmlabs = XElement.Parse(absence.PreviousData.OuterXml);
+                    foreach (XElement abs in xmlabs.Elements("Absence"))
+                    {
+                        //搜尋的目標會像"Reason[.='曠課']" 之類的
+                        XElement reason = period.XPathSelectElement("Reason[.='" + abs.Attribute("Name").Value + "']");
+
+                        if (reason != null)
+                        {
+                            newperiod.SetAttributeValue("Reason", reason.Value);                                                      
+                        }
+                    }                                                                                                  
 
                     newattendance.Add(newperiod);
                 }

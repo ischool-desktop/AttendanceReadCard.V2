@@ -152,8 +152,12 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Lib\OMRAPI.x32" />
-    <None Include="Lib\OMRAPI.x64" />
+    <None Include="Lib\OMRAPI.x32">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lib\OMRAPI.x64">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\calculator_32.png" />
   </ItemGroup>
   <ItemGroup>
@@ -162,6 +166,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ReadMe\Example.png" />
+    <Content Include="ReadMe\初次使用請看我.txt" />
     <None Include="LeaveExampleData.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -179,6 +185,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

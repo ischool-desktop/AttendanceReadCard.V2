@@ -66,10 +66,10 @@
             // btnClose
             // 
             this.btnClose.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnClose.BackColor = System.Drawing.Color.Transparent;
             this.btnClose.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnClose.Location = new System.Drawing.Point(808, 466);
+            this.btnClose.Location = new System.Drawing.Point(848, 465);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
             this.btnClose.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -80,10 +80,10 @@
             // btnSave
             // 
             this.btnSave.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnSave.BackColor = System.Drawing.Color.Transparent;
             this.btnSave.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSave.Location = new System.Drawing.Point(727, 466);
+            this.btnSave.Location = new System.Drawing.Point(767, 465);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -200,7 +200,7 @@
             this.dgvAttendance.RowHeadersWidth = 25;
             this.dgvAttendance.RowTemplate.Height = 24;
             this.dgvAttendance.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAttendance.Size = new System.Drawing.Size(876, 408);
+            this.dgvAttendance.Size = new System.Drawing.Size(915, 408);
             this.dgvAttendance.TabIndex = 3;
             this.dgvAttendance.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvAttendance_CellFormatting);
             this.dgvAttendance.SelectionChanged += new System.EventHandler(this.dgvAttendance_SelectionChanged);
@@ -208,11 +208,11 @@
             // btnBeginRead
             // 
             this.btnBeginRead.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnBeginRead.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBeginRead.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnBeginRead.AutoExpandOnClick = true;
             this.btnBeginRead.BackColor = System.Drawing.Color.Transparent;
             this.btnBeginRead.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnBeginRead.Location = new System.Drawing.Point(808, 15);
+            this.btnBeginRead.Location = new System.Drawing.Point(828, 14);
             this.btnBeginRead.Name = "btnBeginRead";
             this.btnBeginRead.Size = new System.Drawing.Size(75, 23);
             this.btnBeginRead.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -245,7 +245,7 @@
             // 
             this.labelX3.BackgroundStyle.Class = "";
             this.labelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX3.Location = new System.Drawing.Point(642, 16);
+            this.labelX3.Location = new System.Drawing.Point(625, 15);
             this.labelX3.Name = "labelX3";
             this.labelX3.Size = new System.Drawing.Size(74, 21);
             this.labelX3.TabIndex = 6;
@@ -260,7 +260,7 @@
             this.intValue.BackgroundStyle.Class = "DateTimeInputBackground";
             this.intValue.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.intValue.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
-            this.intValue.Location = new System.Drawing.Point(722, 14);
+            this.intValue.Location = new System.Drawing.Point(705, 13);
             this.intValue.MaxValue = 12;
             this.intValue.MinValue = 1;
             this.intValue.Name = "intValue";
@@ -325,100 +325,91 @@
             // 
             // p1
             // 
-            this.p1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.p1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.p1.DataPropertyName = "Period1";
             this.p1.HeaderText = "一";
             this.p1.Name = "p1";
             this.p1.ReadOnly = true;
-            this.p1.Width = 46;
             // 
             // p2
             // 
-            this.p2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.p2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.p2.DataPropertyName = "Period2";
             this.p2.HeaderText = "二";
             this.p2.Name = "p2";
             this.p2.ReadOnly = true;
-            this.p2.Width = 46;
             // 
             // p3
             // 
-            this.p3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.p3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.p3.DataPropertyName = "Period3";
             this.p3.HeaderText = "三";
             this.p3.Name = "p3";
             this.p3.ReadOnly = true;
-            this.p3.Width = 46;
             // 
             // p4
             // 
-            this.p4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.p4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.p4.DataPropertyName = "Period4";
             this.p4.HeaderText = "四";
             this.p4.Name = "p4";
             this.p4.ReadOnly = true;
-            this.p4.Width = 46;
             // 
             // p5
             // 
-            this.p5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.p5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.p5.DataPropertyName = "Period5";
             this.p5.HeaderText = "午休";
             this.p5.Name = "p5";
             this.p5.ReadOnly = true;
-            this.p5.Width = 59;
             // 
             // p6
             // 
-            this.p6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.p6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.p6.DataPropertyName = "Period6";
             this.p6.HeaderText = "五";
             this.p6.Name = "p6";
             this.p6.ReadOnly = true;
-            this.p6.Width = 46;
             // 
             // p7
             // 
-            this.p7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.p7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.p7.DataPropertyName = "Period7";
             this.p7.HeaderText = "六";
             this.p7.Name = "p7";
             this.p7.ReadOnly = true;
-            this.p7.Width = 46;
             // 
             // p8
             // 
-            this.p8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.p8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.p8.DataPropertyName = "Period8";
             this.p8.HeaderText = "七";
             this.p8.Name = "p8";
             this.p8.ReadOnly = true;
-            this.p8.Width = 46;
             // 
             // p9
             // 
-            this.p9.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.p9.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.p9.DataPropertyName = "Period9";
             this.p9.HeaderText = "八";
             this.p9.Name = "p9";
             this.p9.ReadOnly = true;
-            this.p9.Width = 46;
             // 
             // p10
             // 
-            this.p10.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.p10.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.p10.DataPropertyName = "Period10";
             this.p10.HeaderText = "九";
             this.p10.Name = "p10";
             this.p10.ReadOnly = true;
-            this.p10.Width = 46;
             // 
             // ReadCardForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(895, 499);
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(947, 499);
             this.Controls.Add(this.labelX3);
             this.Controls.Add(this.intValue);
             this.Controls.Add(this.btnBeginRead);
@@ -430,8 +421,10 @@
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnClose);
             this.DoubleBuffered = true;
+            this.MaximumSize = new System.Drawing.Size(963, 538);
+            this.MinimumSize = new System.Drawing.Size(963, 538);
             this.Name = "ReadCardForm";
-            this.Text = "/";
+            this.Text = "讀卡";
             this.Load += new System.EventHandler(this.ReadCardForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.intSchoolYear)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.intSemester)).EndInit();

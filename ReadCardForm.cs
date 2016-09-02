@@ -210,7 +210,10 @@ namespace AttendanceReadCard
 
 								if (this.CardType == CardType.點名卡)
 								{
-									if (apold.AbsenceType == this.Setup.LateString || apold.AbsenceType == this.Setup.AbsenceString)
+
+                                    // 2016/9/2 穎驊筆記，自此缺曠不再只分遲到、曠課，不再使用LateString、AbsenceString，故將下面註解掉
+                                    //if (apold.AbsenceType == this.Setup.LateString || apold.AbsenceType == this.Setup.AbsenceString)
+
 										apold.AbsenceType = apnew.AbsenceType; //找到就直接改掉。
 								}
 							}

@@ -8,7 +8,16 @@ using System.Collections.Generic;
 
 namespace AttendanceReadCard
 {
-	public enum CardType { 點名卡 = 56, 請假卡 = 12 };
+    //public enum CardType { 點名卡 = 56, 請假卡 = 12 };
+
+
+    //2016/9/1 穎驊新增，原本讀卡只能支援6行 基本資料(年級日期班級) + 50行 50位 學生 共56行 資料
+
+    //由於需求變更，恩正說將支援學生數提升到60，固總行數數為6+60 =66
+
+    public enum CardType { 點名卡 = 66, 請假卡 = 12 };
+
+
     public partial class CardReadingForm : BaseForm
 	{
 		private delegate XElement ParserDelegate(byte[] source, int level, int source_length);
@@ -57,7 +66,7 @@ namespace AttendanceReadCard
         {
             try
             {
-				OMRCardReader.Open(35, (int)this.Type); //點名卡規格。56x35
+				OMRCardReader.Open(35, (int)this.Type); //點名卡規格。66x35 (目前2016/9/2 的版本)
 
                 byte[] data; //儲存讀進來的 Binary 資料。
                 Exception error; //讀卡錯誤資訊。

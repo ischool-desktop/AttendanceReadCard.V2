@@ -54,9 +54,15 @@ namespace AttendanceReadCard
         public static string[] LeaveNameList = new string[] { "事", 
                     "病", "喪", "公"};
 
+
+
+
+        //2016/9/2 穎驊紀錄，下面這項不會再被用到，因為每張卡片每年都有可能會改起始年度，
+        //起始年度將由UI給使用者自訂
+
         /// <summary>
         /// 卡片上的起始年度。
         /// </summary>
-        public static int StartYear = 104;
+        //public static int StartYear = 104;
     }
 }
