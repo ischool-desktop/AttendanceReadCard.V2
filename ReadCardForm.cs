@@ -341,8 +341,13 @@ namespace AttendanceReadCard
                 row.Selected = false;
         }
 
+
+        //2016.9.12 穎驊註解，取消請假卡的選項，將其功能另外移轉，但因為許多Code 與點名卡重疊不好拆解，僅註解取消UI功能，因此許多函式已同虛設
+        //如需找尋請假卡功能，請去抓請假卡模組
+
 		private void btnLeave_Click(object sender, EventArgs e)
 		{
+
 			try
 			{
 				this.CardType = CardType.請假卡;
@@ -523,6 +528,6 @@ namespace AttendanceReadCard
 				RTOut.WriteError(ex);
 				MessageBox.Show(ex.Message);
 			}
-		}
+        }
     }
 }

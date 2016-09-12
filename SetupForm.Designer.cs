@@ -28,12 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvClassMap = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.chClassName = new DevComponents.DotNetBar.Controls.DataGridViewComboBoxExColumn();
             this.chCardName = new DevComponents.DotNetBar.Controls.DataGridViewComboBoxExColumn();
@@ -53,15 +51,10 @@
             this.cboOverride = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.comboItem1 = new DevComponents.Editors.ComboItem();
             this.comboItem2 = new DevComponents.Editors.ComboItem();
-            this.dgvLeaveMap = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.chCardLeave = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.chLeave = new DevComponents.DotNetBar.Controls.DataGridViewComboBoxExColumn();
-            this.labelX7 = new DevComponents.DotNetBar.LabelX();
             this.labelX8 = new DevComponents.DotNetBar.LabelX();
             this.cboReadingCardStartYear = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClassMap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPeriodMap)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvLeaveMap)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvClassMap
@@ -74,14 +67,14 @@
             this.dgvClassMap.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.chClassName,
             this.chCardName});
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvClassMap.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvClassMap.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvClassMap.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgvClassMap.HighlightSelectedColumnHeaders = false;
             this.dgvClassMap.Location = new System.Drawing.Point(12, 38);
@@ -98,8 +91,8 @@
             // chClassName
             // 
             this.chClassName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.chClassName.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.chClassName.DefaultCellStyle = dataGridViewCellStyle5;
             this.chClassName.DisplayMember = "Text";
             this.chClassName.DropDownHeight = 106;
             this.chClassName.DropDownWidth = 121;
@@ -169,14 +162,14 @@
             this.ch_1_0,
             this.ch_1_1,
             this.ch_0_1});
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvPeriodMap.DefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPeriodMap.DefaultCellStyle = dataGridViewCellStyle8;
             this.dgvPeriodMap.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgvPeriodMap.HighlightSelectedColumnHeaders = false;
             this.dgvPeriodMap.Location = new System.Drawing.Point(285, 38);
@@ -192,8 +185,8 @@
             // 
             // chCardPeriod
             // 
-            dataGridViewCellStyle21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.chCardPeriod.DefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.chCardPeriod.DefaultCellStyle = dataGridViewCellStyle7;
             this.chCardPeriod.HeaderText = "讀卡節次";
             this.chCardPeriod.Name = "chCardPeriod";
             this.chCardPeriod.ReadOnly = true;
@@ -264,7 +257,7 @@
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.BackColor = System.Drawing.Color.Transparent;
             this.btnSave.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSave.Location = new System.Drawing.Point(845, 393);
+            this.btnSave.Location = new System.Drawing.Point(572, 393);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -278,7 +271,7 @@
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClose.BackColor = System.Drawing.Color.Transparent;
             this.btnClose.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnClose.Location = new System.Drawing.Point(929, 393);
+            this.btnClose.Location = new System.Drawing.Point(656, 393);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
             this.btnClose.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -351,73 +344,6 @@
             // 
             this.comboItem2.Text = "略過讀卡資料";
             // 
-            // dgvLeaveMap
-            // 
-            this.dgvLeaveMap.AllowUserToAddRows = false;
-            this.dgvLeaveMap.AllowUserToDeleteRows = false;
-            this.dgvLeaveMap.AllowUserToResizeRows = false;
-            this.dgvLeaveMap.BackgroundColor = System.Drawing.Color.White;
-            this.dgvLeaveMap.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvLeaveMap.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.chCardLeave,
-            this.chLeave});
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle24.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvLeaveMap.DefaultCellStyle = dataGridViewCellStyle24;
-            this.dgvLeaveMap.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.dgvLeaveMap.HighlightSelectedColumnHeaders = false;
-            this.dgvLeaveMap.Location = new System.Drawing.Point(754, 38);
-            this.dgvLeaveMap.Margin = new System.Windows.Forms.Padding(2);
-            this.dgvLeaveMap.Name = "dgvLeaveMap";
-            this.dgvLeaveMap.RowHeadersWidth = 25;
-            this.dgvLeaveMap.RowTemplate.Height = 24;
-            this.dgvLeaveMap.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvLeaveMap.Size = new System.Drawing.Size(250, 316);
-            this.dgvLeaveMap.TabIndex = 16;
-            // 
-            // chCardLeave
-            // 
-            dataGridViewCellStyle23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.chCardLeave.DefaultCellStyle = dataGridViewCellStyle23;
-            this.chCardLeave.HeaderText = "讀卡假別";
-            this.chCardLeave.Name = "chCardLeave";
-            this.chCardLeave.ReadOnly = true;
-            this.chCardLeave.Width = 90;
-            // 
-            // chLeave
-            // 
-            this.chLeave.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.chLeave.DropDownHeight = 106;
-            this.chLeave.DropDownWidth = 121;
-            this.chLeave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chLeave.HeaderText = "假別";
-            this.chLeave.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.chLeave.IntegralHeight = false;
-            this.chLeave.ItemHeight = 17;
-            this.chLeave.Name = "chLeave";
-            this.chLeave.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.chLeave.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            // 
-            // labelX7
-            // 
-            this.labelX7.AutoSize = true;
-            this.labelX7.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.labelX7.BackgroundStyle.Class = "";
-            this.labelX7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX7.Location = new System.Drawing.Point(754, 12);
-            this.labelX7.Name = "labelX7";
-            this.labelX7.Size = new System.Drawing.Size(104, 21);
-            this.labelX7.TabIndex = 15;
-            this.labelX7.Text = "請假卡:假別對照";
-            // 
             // labelX8
             // 
             this.labelX8.AutoSize = true;
@@ -449,11 +375,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1019, 427);
+            this.ClientSize = new System.Drawing.Size(746, 427);
             this.Controls.Add(this.cboReadingCardStartYear);
             this.Controls.Add(this.labelX8);
-            this.Controls.Add(this.dgvLeaveMap);
-            this.Controls.Add(this.labelX7);
             this.Controls.Add(this.cboOverride);
             this.Controls.Add(this.labelX6);
             this.Controls.Add(this.btnAutoPeriod);
@@ -467,12 +391,13 @@
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximumSize = new System.Drawing.Size(762, 466);
+            this.MinimumSize = new System.Drawing.Size(762, 466);
             this.Name = "SetupForm";
             this.Text = "學生出缺席讀卡設定";
             this.Load += new System.EventHandler(this.SetupForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvClassMap)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPeriodMap)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvLeaveMap)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -494,10 +419,6 @@
         private DevComponents.DotNetBar.Controls.ComboBoxEx cboOverride;
         private DevComponents.Editors.ComboItem comboItem1;
         private DevComponents.Editors.ComboItem comboItem2;
-		private DevComponents.DotNetBar.Controls.DataGridViewX dgvLeaveMap;
-		private DevComponents.DotNetBar.LabelX labelX7;
-		private System.Windows.Forms.DataGridViewTextBoxColumn chCardLeave;
-		private DevComponents.DotNetBar.Controls.DataGridViewComboBoxExColumn chLeave;
         private DevComponents.DotNetBar.LabelX labelX8;
         private DevComponents.DotNetBar.Controls.ComboBoxEx cboReadingCardStartYear;
         private System.Windows.Forms.DataGridViewTextBoxColumn chCardPeriod;

@@ -56,7 +56,7 @@ namespace AttendanceReadCard
                     //cboLateMap.Items.Add(abs.Attribute("Name").Value);
                     //cboEmptyMap.Items.Add(abs.Attribute("Name").Value);
 
-					chLeave.Items.Add(abs.Attribute("Name").Value);
+                    //chLeave.Items.Add(abs.Attribute("Name").Value);
 
                     // 2016/9/1 穎驊新增，讓使用者可以針對各個節數定義畫卡 1_0、1_1、0_1 在系統中的假別是甚麼，
                     //(每節次的讀卡是兩洞一組，1_0 的意思是第一洞塗滿、第二洞沒塗)
@@ -72,15 +72,17 @@ namespace AttendanceReadCard
                 ch_1_1.Items.Add("");
                 ch_0_1.Items.Add("");
 
+                //2016.9.12 穎驊註解，取消請假卡的選項，將其功能另外移轉，但因為許多Code 與點名卡重疊不好拆解，僅註解取消UI功能
+                //如需找尋請假卡功能，請去抓請假卡模組
 
-				//顯示「假別對照表」於 DataGridView。
-				string[] leaves = Program.LeaveNameList;
-				foreach (string leave in leaves)
-				{
-					DataGridViewRow row = new DataGridViewRow();
-					row.CreateCells(dgvLeaveMap, leave, Config[leave]);
-					dgvLeaveMap.Rows.Add(row);
-				}
+                ////顯示「假別對照表」於 DataGridView。
+                //string[] leaves = Program.LeaveNameList;
+                //foreach (string leave in leaves)
+                //{
+                //    DataGridViewRow row = new DataGridViewRow();
+                //    row.CreateCells(dgvLeaveMap, leave, Config[leave]);
+                //    dgvLeaveMap.Rows.Add(row);
+                //}
 
                 //cboLateMap.Text = Config["遲"];
                 //cboEmptyMap.Text = Config["缺"];
@@ -197,24 +199,25 @@ namespace AttendanceReadCard
 				}
 
 				duplicate = new HashSet<string>();
-				foreach (DataGridViewRow row in dgvLeaveMap.Rows)
-				{
-					string cardLeave = row.Cells[chCardLeave.Index].Value + "";
-					string leave = row.Cells[chLeave.Index].Value + "";
 
-					if (duplicate.Contains(leave))
-					{
-						row.ErrorText = "資料重覆！";
-						return;
-					}
-					else
-						row.ErrorText = string.Empty;
+                //foreach (DataGridViewRow row in dgvLeaveMap.Rows)
+                //{
+                //    string cardLeave = row.Cells[chCardLeave.Index].Value + "";
+                //    string leave = row.Cells[chLeave.Index].Value + "";
 
-					Config[cardLeave] = leave;
+                //    if (duplicate.Contains(leave))
+                //    {
+                //        row.ErrorText = "資料重覆！";
+                //        return;
+                //    }
+                //    else
+                //        row.ErrorText = string.Empty;
 
-					if (!string.IsNullOrWhiteSpace(leave))
-						duplicate.Add(leave);
-				}
+                //    Config[cardLeave] = leave;
+
+                //    if (!string.IsNullOrWhiteSpace(leave))
+                //        duplicate.Add(leave);
+                //}
 
                 duplicate = new HashSet<string>();
                 XElement classmap = new XElement("Map");
