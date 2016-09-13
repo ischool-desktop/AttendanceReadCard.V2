@@ -101,7 +101,7 @@ namespace AttendanceReadCard
                 //2016/8/31  穎驊 新增動態依據讀卡上的起始年，使用者可以調整設定，目前有104年、105年 可以在"設定"中改變
                 Config = Campus.Configuration.Config.App["學生出缺席讀卡設定"];
 
-                int mark_no = int.Parse(Config["讀卡起始年"]);
+                int mark_no = int.Parse(Config["讀卡起始年--點名卡"]);
 
 				for (int i = 0; i < this.Position.Count(); i++)
 				{
@@ -449,7 +449,7 @@ namespace AttendanceReadCard
 						begin_year_mark_count += 1;
                       //begin_year_mark_no = Program.StartYear + i;
 
-                        begin_year_mark_no = int.Parse(Config["讀卡起始年"])+i;
+                        begin_year_mark_no = int.Parse(Config["讀卡起始年--點名卡"]) + i;
 
 
 					}
@@ -468,7 +468,7 @@ namespace AttendanceReadCard
 						end_year_mark_count += 1;
                         //end_year_mark_no = Program.StartYear + i;
 
-                        end_year_mark_no = int.Parse(Config["讀卡起始年"]) + i;
+                        end_year_mark_no = int.Parse(Config["讀卡起始年--點名卡"]) + i;
 
 					}
 					//	請假日期--月(至)

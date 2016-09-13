@@ -136,7 +136,7 @@ namespace AttendanceReadCard
                     cboReadingCardStartYear.Items.Add(104+i);
                 }
                                 
-                cboReadingCardStartYear.Text = Config["讀卡起始年"];
+                cboReadingCardStartYear.Text = Config["讀卡起始年--點名卡"];
 
             }
             catch (Exception ex)
@@ -161,7 +161,7 @@ namespace AttendanceReadCard
                 Config["OverrideOption"] = cboOverride.Text;
 
                 //2016/8/31 穎驊新增 讀卡起始年
-                Config["讀卡起始年"] = cboReadingCardStartYear.Text;
+                Config["讀卡起始年--點名卡"] = cboReadingCardStartYear.Text;
 
 
                 HashSet<string> duplicate = new HashSet<string>();
