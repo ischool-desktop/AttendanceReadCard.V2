@@ -13,13 +13,25 @@ namespace AttendanceReadCard
     /// </summary>
     public class WVSOMRParser
     {
-       
-		//	解析「年級」之畫記
-		private sealed class GradeYearParser : Decorator
+        
+        //	解析「年級」之畫記
+        private sealed class GradeYearParser : Decorator
 		{
-			private readonly IEnumerable<int> Position = Enumerable.Range(4, 3);
+
+            static XDocument cardPositionSetting = XDocument.Parse(AttendanceReadCard.Properties.Resources.CardPositionSettingData);
+
+            static XElement attendanceCardData = cardPositionSetting.Document.Element("CardPositionSetting").Element("AttendanceCardData");
+
+            static XElement gradeData = attendanceCardData.Element("Grade");
+
+            static int starpoint = int.Parse(gradeData.Element("StartPosition").Value);
+
+            static int count = int.Parse(gradeData.Element("Count").Value);
+
+
+            private readonly IEnumerable<int> Position = Enumerable.Range(starpoint, count);
             
-			public override bool Validate()
+            public override bool Validate()
 			{
 				int mark_count = 0;
 				int mark_no = 1;
@@ -48,12 +60,25 @@ namespace AttendanceReadCard
 		//	解析「班級」之畫記
 		private sealed class ClassParser : Decorator
 		{
-			//	班級之畫記的絕對位置：4列10行
-			private readonly List<IEnumerable<int>> Position = new List<IEnumerable<int>> { 
-				Enumerable.Range(38, 10), 
-				Enumerable.Range(38 + 1*35, 10),
-				Enumerable.Range(38 + 2*35, 10),
-				Enumerable.Range(38 + 3*35, 10) };
+            static XDocument cardPositionSetting = XDocument.Parse(AttendanceReadCard.Properties.Resources.CardPositionSettingData);
+
+            static XElement attendanceCardData = cardPositionSetting.Document.Element("CardPositionSetting").Element("AttendanceCardData");
+
+            static XElement classData = attendanceCardData.Element("Class");
+
+            static int perRowcount = int.Parse(attendanceCardData.Element("PerRowCount").Value);
+
+            static int starpoint = int.Parse(classData.Element("StartPosition").Value);
+
+            static int count = int.Parse(classData.Element("Count").Value);
+
+
+            //	班級之畫記的絕對位置：4列10行
+            private readonly List<IEnumerable<int>> Position = new List<IEnumerable<int>> { 
+				Enumerable.Range(starpoint, count), 
+				Enumerable.Range(starpoint + 1*perRowcount, count),
+				Enumerable.Range(starpoint + 2*perRowcount, count),
+				Enumerable.Range(starpoint + 3*perRowcount, count) };
 
 			public override bool Validate()
 			{
@@ -88,10 +113,21 @@ namespace AttendanceReadCard
 		//	解析「點名日期--年」之畫記
 		private sealed class YearParser : Decorator
 		{
+            static XDocument cardPositionSetting = XDocument.Parse(AttendanceReadCard.Properties.Resources.CardPositionSettingData);
+
+            static XElement attendanceCardData = cardPositionSetting.Document.Element("CardPositionSetting").Element("AttendanceCardData");
+
+            static XElement yearData = attendanceCardData.Element("Year");
+            
+            static int starpoint = int.Parse(yearData.Element("StartPosition").Value);
+
+            static int count = int.Parse(yearData.Element("Count").Value);
+
+
             //2016/8/31  穎驊 新增動態依據讀卡上的起始年，使用者可以調整設定
             ConfigData Config { get; set; }
             
-			private readonly IEnumerable<int> Position = Enumerable.Range(17, 12);
+			private readonly IEnumerable<int> Position = Enumerable.Range(starpoint, count);
 			public override bool Validate()
 			{
 				int mark_count = 0;
@@ -129,7 +165,17 @@ namespace AttendanceReadCard
 		//	解析「點名日期--月」之畫記
 		private sealed class MonthParser : Decorator
 		{
-			private readonly IEnumerable<int> Position = Enumerable.Range(52, 12);
+            static XDocument cardPositionSetting = XDocument.Parse(AttendanceReadCard.Properties.Resources.CardPositionSettingData);
+
+            static XElement attendanceCardData = cardPositionSetting.Document.Element("CardPositionSetting").Element("AttendanceCardData");
+
+            static XElement monthData = attendanceCardData.Element("Month");
+
+            static int starpoint = int.Parse(monthData.Element("StartPosition").Value);
+
+            static int count = int.Parse(monthData.Element("Count").Value);
+
+            private readonly IEnumerable<int> Position = Enumerable.Range(starpoint, count);
 			public override bool Validate()
 			{
 				int mark_count = 0;
@@ -160,7 +206,22 @@ namespace AttendanceReadCard
 		//	解析「點名日期--日」之畫記
 		private sealed class DayParser : Decorator
 		{
-			private readonly IEnumerable<int> Position = Enumerable.Range(122, 10).Union(Enumerable.Range(122 + 1 * 35, 10).Union(Enumerable.Range(122 + 2 * 35, 11)));
+
+            static XDocument cardPositionSetting = XDocument.Parse(AttendanceReadCard.Properties.Resources.CardPositionSettingData);
+
+            static XElement attendanceCardData = cardPositionSetting.Document.Element("CardPositionSetting").Element("AttendanceCardData");
+
+            static XElement dayData = attendanceCardData.Element("Day");
+
+            static int perRowcount = int.Parse(attendanceCardData.Element("PerRowCount").Value);
+
+            static int starpoint = int.Parse(dayData.Element("StartPosition").Value);
+
+            //日期 基本格式 每列 為 10、10、11 個 共31個
+            //static int count = int.Parse(dayData.Element("Count").Value);
+
+
+            private readonly IEnumerable<int> Position = Enumerable.Range(starpoint, 10).Union(Enumerable.Range(starpoint + 1 * perRowcount, 10).Union(Enumerable.Range(starpoint + 2 * perRowcount, 11)));
 
 			public override bool Validate()
 			{
@@ -201,19 +262,37 @@ namespace AttendanceReadCard
 
             ConfigData Config { get; set; }
 
-			//private readonly string[] PeriodMappings = new string[] { "早修/升旗", "第一節", "第二節", "第三節", "第四節", "午休", "第五節", "第六節", "第七節", "第八節" }; 
-			public override bool Validate()
+            static XDocument cardPositionSetting = XDocument.Parse(AttendanceReadCard.Properties.Resources.CardPositionSettingData);
+
+            static XElement attendanceCardData = cardPositionSetting.Document.Element("CardPositionSetting").Element("AttendanceCardData");
+
+            static XElement attendData = attendanceCardData.Element("AttendRecord");
+
+            static int perRowcount = int.Parse(attendanceCardData.Element("PerRowCount").Value);
+
+            static int starpoint = int.Parse(attendData.Element("StartPosition").Value);
+
+            static int count = int.Parse(attendData.Element("Count").Value);
+
+            static int totalRow = int.Parse(attendData.Element("TotalRow").Value);
+
+            //private readonly string[] PeriodMappings = new string[] { "早修/升旗", "第一節", "第二節", "第三節", "第四節", "午休", "第五節", "第六節", "第七節", "第八節" }; 
+            public override bool Validate()
 			{
+    //            
                 //2016/9/1 穎驊筆記，就學生缺曠資料其起始點為35*6 +2 = 212
-				int start = 212;
-				int position = 0;
+				//int start = 212;
+                int position = 0;
+
+               
+
 
                 //2016/9/1 穎驊筆記，支援最多可以掃60行
-				for(int i=0; i<60; i++)
+                for (int i=0; i< totalRow; i++)
 				{
 					XElement Discipline = new XElement("Discipline", new XAttribute("SeatNo", i + 1));
 					this.Message.Element("Success").Add(Discipline);
-					position = start + 35*i;
+					position = starpoint + count * i;
 
 					for (int j = 0; j <= 10; j++)
 					{

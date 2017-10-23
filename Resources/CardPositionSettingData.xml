@@ -1,0 +1,30 @@
+﻿<CardPositionSetting>
+    <AttendanceCardData>
+      <PerRowCount>35</PerRowCount>
+      <PerColumncount>65</PerColumncount>      
+      <Grade>      
+        <StartPosition>4</StartPosition>
+        <Count>3</Count>
+      </Grade>        
+      <Class>
+        <StartPosition>38</StartPosition>
+        <Count>10</Count>     
+      </Class>                  
+      <Year>
+        <StartPosition>17</StartPosition>
+        <Count>12</Count>
+      </Year>
+      <Month>
+        <StartPosition>52</StartPosition>
+        <Count>12</Count>
+      </Month>
+      <Day>
+        <StartPosition>87</StartPosition>        
+      </Day>
+      <AttendRecord>
+        <StartPosition>177</StartPosition>
+        <Count>35</Count>
+        <TotalRow>60</TotalRow>
+      </AttendRecord>
+    </AttendanceCardData>
+</CardPositionSetting>
