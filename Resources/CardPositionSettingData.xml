@@ -1,5 +1,9 @@
 ﻿<CardPositionSetting>
-    <AttendanceCardData>
+  <!--2017/11/1，穎驊註解， 此份xml 為紀載點名卡的設定以便未來能夠提供不同學校的讀卡設定，本例為葳格高級中學2017/11 的版本  -->
+  <!--PerRowCount 代表有幾行、PerColumncount代表有幾列  -->
+  <!--StartPosition 代表其資料的起始點，Count代表往右數幾格，TotalRow 代表總共有幾列 ，Peroids 內容為卡片上的節次資訊 -->
+  <!--在程式碼內設定中斷點，實際執行看看，會更清楚讀卡的運作，(基本上就是數格子，可詳見ReadMe 資料夾內說明) -->
+    <AttendanceCardData>      
       <PerRowCount>35</PerRowCount>
       <PerColumncount>65</PerColumncount>      
       <Grade>      
@@ -26,5 +30,18 @@
         <Count>35</Count>
         <TotalRow>60</TotalRow>
       </AttendRecord>
+      <Peroids>
+        <Peroid>早修/升旗</Peroid>
+        <Peroid>第一節</Peroid>
+        <Peroid>第二節</Peroid>
+        <Peroid>第三節</Peroid>
+        <Peroid>第四節</Peroid>
+        <Peroid>第五節</Peroid>
+        <Peroid>第六節</Peroid>
+        <Peroid>第七節</Peroid>
+        <Peroid>第八節</Peroid>
+        <Peroid>第九節</Peroid>
+        <Peroid>第十節</Peroid>        
+      </Peroids>
     </AttendanceCardData>
 </CardPositionSetting>
