@@ -45,7 +45,6 @@ namespace AttendanceReadCard
             AddPeriod();
         }
 
-
         //2017/11/1 穎驊紀錄，下面這項不會再被用到，因為每張卡片每年都有可能會改變節次，
         // 經由討論 統一在卡片設定的 CardPositionSettingData 統一紀錄
 
@@ -56,31 +55,20 @@ namespace AttendanceReadCard
         //            "第一節", "第二節", "第三節", "第四節", "午休",
         //            "第五節", "第六節", "第七節", "第八節", "第九節"};
 
-
         public static string[] PeriodNameList = new string[] { };
 
         public static void AddPeriod()
         {
-            XDocument cardPositionSetting = XDocument.Parse(AttendanceReadCard.Properties.Resources.CardPositionSettingData);
-
-            XElement attendanceCardData = cardPositionSetting.Document.Element("CardPositionSetting").Element("AttendanceCardData");
-
-            XElement Peroids = attendanceCardData.Element("Peroids");
-                        
-            PeriodNameList = Peroids.Descendants("Peroid").Select(element => element.Value).ToArray();
-
+            // 2017/11/13 羿均修改，新讀卡設定xml檔(CardSettingData)
+            XDocument cardSettingData = XDocument.Parse(AttendanceReadCard.Properties.Resources.CardSettingData);
+            XElement MappingAttendance = cardSettingData.Element("CardPositionSetting").Element("MappingAttendance");
+            PeriodNameList = MappingAttendance.Descendants("Period").Select(element => element.Attribute("Value").Value).ToArray();
         }
-
-
 
         /// <summary>
         /// 卡片上所提供的假別列表。
         /// </summary>
-        public static string[] LeaveNameList = new string[] { "事", 
-                    "病", "喪", "公"};
-
-
-
+        public static string[] LeaveNameList = new string[] { "事", "病", "喪", "公"};
 
         //2016/9/2 穎驊紀錄，下面這項不會再被用到，因為每張卡片每年都有可能會改起始年度，
         //起始年度將由UI給使用者自訂

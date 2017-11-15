@@ -18,7 +18,7 @@ namespace AttendanceReadCard
     public partial class ReadCardForm : BaseForm
     {
         //2016/8/31  穎驊 新增動態依據讀卡上的起始年，使用者可以調整設定
-        ConfigData Config { get; set; }
+        //ConfigData Config { get; set; }
 
         /// <summary>
         /// 讀卡設定。
@@ -42,21 +42,15 @@ namespace AttendanceReadCard
 
         private void ReadCardForm_Load(object sender, EventArgs e)
         {
-           
-
-
             //2017/10/23  穎驊 動態偵測讀卡上的起始年設定，若使用者還沒設定，則跳出提醒，避免後續會有無法完成讀卡問題
-            Config = Campus.Configuration.Config.App["學生出缺席讀卡設定"];
+            //Config = Campus.Configuration.Config.App["學生出缺席讀卡設定"];
+            //if (Config["讀卡起始年--點名卡"] == "")
+            //{
+            //    MessageBox.Show("尚未設定讀卡起始學年度，請先至讀卡設定，設定卡紙起始學年度。", "ischool", MessageBoxButtons.YesNo);
 
-            if (Config["讀卡起始年--點名卡"] == "")
-            {
-                MessageBox.Show("尚未設定讀卡起始學年度，請先至讀卡設定，設定卡紙起始學年度。", "ischool", MessageBoxButtons.YesNo);
+            //    this.Close();
+            //}
 
-                this.Close();
-            }
-
-
-            
             #region Init 相關資料
             try
             {
@@ -64,6 +58,18 @@ namespace AttendanceReadCard
 
                 intSchoolYear.Value = int.Parse(K12.Data.School.DefaultSchoolYear);
                 intSemester.Value = int.Parse(K12.Data.School.DefaultSemester);
+                // 2017/11/13 羿均 datagridview的節次將根據xml的設定動態產生。
+                //int i = 0;
+                //foreach (string period in Program.PeriodNameList)
+                //{
+                //    DataGridViewColumn dgvcolumn = new DataGridViewColumn();
+                //    dgvcolumn.Name = "p" + i;
+                //    dgvcolumn.Width = 59;
+                //    dgvcolumn.HeaderText = period;
+
+                //    dgvAttendance.Columns.Add(dgvcolumn);
+                //    i++;
+                //}
 
                 int i = 0;
                 foreach (string period in Program.PeriodNameList)

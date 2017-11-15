@@ -15,7 +15,7 @@ namespace AttendanceReadCard
 
     //由於需求變更，恩正說將支援學生數提升到60，固總行數數為6+60 =66
 
-    public enum CardType { 點名卡 = 66, 請假卡 = 12 };
+    public enum CardType { 點名卡 = 56, 請假卡 = 12 };
 
 
     public partial class CardReadingForm : BaseForm
@@ -66,22 +66,22 @@ namespace AttendanceReadCard
         {
             try
             {
-
-                XDocument cardPositionSetting = XDocument.Parse(AttendanceReadCard.Properties.Resources.CardPositionSettingData);
-
-                XElement attendanceCardData = cardPositionSetting.Document.Element("CardPositionSetting").Element("AttendanceCardData");
-
+               // XDocument cardPositionSetting = XDocument.Parse(AttendanceReadCard.Properties.Resources.CardPositionSettingData);
+               // XElement attendanceCardData = cardPositionSetting.Document.Element("CardPositionSetting").Element("AttendanceCardData");
                 //每一Row 數幾次 就是 Column 的數量
-                int perRowcount = int.Parse(attendanceCardData.Element("PerRowCount").Value);
-
+                //int perRowcount = int.Parse(attendanceCardData.Element("PerRowCount").Value);
                 //每一Column 數幾次 就是 Row 的數量
-                int perColumncount = int.Parse(attendanceCardData.Element("PerColumncount").Value);
-
+               // int perColumncount = int.Parse(attendanceCardData.Element("PerColumncount").Value);
                 //OMRCardReader.Open(35, (int)this.Type); //點名卡規格。66x35 (目前2016/9/2 的版本)
+                //OMRCardReader.Open(perRowcount, perColumncount); //2017/10/23 穎驊修正， 點名卡規格。直接定在xml 檔案中，方便未來管理修正。
+               
+                // 2017/11/14 羿均 修改
+                XDocument cardSettingData = XDocument.Parse(AttendanceReadCard.Properties.Resources.CardSettingData);
+                XElement paper = cardSettingData.Element("CardPositionSetting").Element("Paper");
 
-
-                OMRCardReader.Open(perRowcount, perColumncount); //2017/10/23 穎驊修正， 點名卡規格。直接定在xml 檔案中，方便未來管理修正。
-
+                int perRowCount = int.Parse(paper.Element("PerRowCount").Value);
+                int perColumnCount = int.Parse(paper.Element("PerColumnCount").Value);
+                OMRCardReader.Open(perRowCount, perColumnCount);
 
                 byte[] data; //儲存讀進來的 Binary 資料。
                 Exception error; //讀卡錯誤資訊。
@@ -96,7 +96,7 @@ namespace AttendanceReadCard
                         //XElement phrase1 = WVSOMRParser.Instance.Parser(data, 35*(int)this.Type);
                         //XElement phrase1 = this.Parser.Invoke(data, _intValue, 35 * (int)this.Type);
 
-                        XElement phrase1 = this.Parser.Invoke(data, _intValue, perRowcount * perColumncount); //2017/10/23 穎驊修正， 點名卡規格。直接定在xml 檔案中，方便未來管理修正。
+                        XElement phrase1 = this.Parser.Invoke(data, _intValue, perRowCount * perColumnCount); //2017/10/23 穎驊修正， 點名卡規格。直接定在xml 檔案中，方便未來管理修正。
 
                         XElement errors;
 						if (!WVSOMRParser.Instance.IsValidated(phrase1, out errors))

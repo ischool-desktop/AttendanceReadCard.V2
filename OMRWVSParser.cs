@@ -13,46 +13,40 @@ namespace AttendanceReadCard
     /// </summary>
     public class WVSOMRParser
     {
-        
+        // 2017/11/14 羿均 定義新的xml，未來根據不同的畫卡有不同的xml檔
         //	解析「年級」之畫記
         private sealed class GradeYearParser : Decorator
 		{
+            static XDocument cardSettingData = XDocument.Parse(AttendanceReadCard.Properties.Resources.CardSettingData);
+            static XElement gradeYear = cardSettingData.Element("CardPositionSetting").Element("MappingClass").Element("GradeYear");
 
-            static XDocument cardPositionSetting = XDocument.Parse(AttendanceReadCard.Properties.Resources.CardPositionSettingData);
-
-            static XElement attendanceCardData = cardPositionSetting.Document.Element("CardPositionSetting").Element("AttendanceCardData");
-
-            static XElement gradeData = attendanceCardData.Element("Grade");
-
-            static int starpoint = int.Parse(gradeData.Element("StartPosition").Value);
-
-            static int count = int.Parse(gradeData.Element("Count").Value);
-
-
-            private readonly IEnumerable<int> Position = Enumerable.Range(starpoint, count);
+            List<XElement> positionList = gradeYear.Descendants("Position").ToList();
             
             public override bool Validate()
 			{
+                // 年級只畫一次
 				int mark_count = 0;
+                // 年級
 				int mark_no = 1;
-				for (int i = 0; i < this.Position.Count(); i++)
-				{
-					if (this.Source.ElementAt(this.Position.ElementAt(i)) >= this.Level)
-					{
-						mark_count += 1;
-						mark_no += i;
-					}
-				}
+
+                foreach (XElement position in positionList)
+                {
+                    if (this.Source.ElementAt(int.Parse(position.Attribute("Col").Value)) >= this.Level)
+                    {
+                        mark_count += 1;
+                        // 設定畫卡的值
+                        mark_no = int.Parse(position.Attribute("Value").Value);
+                    }
+                }
+
 				if (mark_count != 1)
 				{
 					this.Message.Element("Failure").Add(new XElement("Message", "「年級」畫記錯誤。"));
-
 					return false & base.Validate();
 				}
 				else
 				{
 					this.Message.Element("Success").Add(new XElement("GradeYear", mark_no));
-
 					return base.Validate();
 				}
 			}
@@ -60,93 +54,118 @@ namespace AttendanceReadCard
 		//	解析「班級」之畫記
 		private sealed class ClassParser : Decorator
 		{
-            static XDocument cardPositionSetting = XDocument.Parse(AttendanceReadCard.Properties.Resources.CardPositionSettingData);
-
-            static XElement attendanceCardData = cardPositionSetting.Document.Element("CardPositionSetting").Element("AttendanceCardData");
-
-            static XElement classData = attendanceCardData.Element("Class");
-
-            static int perRowcount = int.Parse(attendanceCardData.Element("PerRowCount").Value);
-
-            static int starpoint = int.Parse(classData.Element("StartPosition").Value);
-
-            static int count = int.Parse(classData.Element("Count").Value);
-
+            // 讀取xml設定
+            static XDocument cardSettingData = XDocument.Parse(AttendanceReadCard.Properties.Resources.CardSettingData);
+            List<XElement> Code = cardSettingData.Element("CardPositionSetting").Element("MappingClass").Element("Class").Elements("Code").ToList();
 
             //	班級之畫記的絕對位置：4列10行
-            private readonly List<IEnumerable<int>> Position = new List<IEnumerable<int>> { 
-				Enumerable.Range(starpoint, count), 
-				Enumerable.Range(starpoint + 1*perRowcount, count),
-				Enumerable.Range(starpoint + 2*perRowcount, count),
-				Enumerable.Range(starpoint + 3*perRowcount, count) };
+            //private readonly List<IEnumerable<int>> Position = new List<IEnumerable<int>> { 
+				//Enumerable.Range(starpoint, count), 
+				//Enumerable.Range(starpoint + 1*perRowcount, count),
+				//Enumerable.Range(starpoint + 2*perRowcount, count),
+				//Enumerable.Range(starpoint + 3*perRowcount, count) };
 
 			public override bool Validate()
 			{
-				List<int> mark_count = Enumerable.Repeat(0, 4).ToList();
-				List<int> mark_no = Enumerable.Repeat(0, 4).ToList();
-				for (int j = 0; j < 4; j++)
-				{
-					for (int i = 0; i < this.Position.ElementAt(j).Count(); i++)
-					{
-						if (this.Source.ElementAt(this.Position.ElementAt(j).ElementAt(i)) >= this.Level)
-						{
-							mark_count[j] += 1;
-							mark_no[j] = i;
-						}
-					}
-				}
-				if (mark_count.ToList().Where(x=>x==1).Count() == 4)
-				{
-					this.Message.Element("Success").Add(new XElement("Class", string.Join("", mark_no)));
+                //List<int> mark_count = Enumerable.Repeat(0, 4).ToList();
+                //List<int> mark_no = Enumerable.Repeat(0, 4).ToList();
+                //for (int j = 0; j < 4; j++)
+                //{
+                //	for (int i = 0; i < this.Position.ElementAt(j).Count(); i++)
+                //	{
+                //		if (this.Source.ElementAt(this.Position.ElementAt(j).ElementAt(i)) >= this.Level)
+                //		{
+                //			mark_count[j] += 1;
+                //			mark_no[j] = i;
+                //		}
+                //	}
+                //}
+                string mark_no = ""; // 值
+                int mark_count = 0; // 畫卡次數
+                int i = 1;
+                foreach (XElement c in Code)
+                {
+                    int index; // 第幾個點
+                    if (int.Parse(c.Attribute("Position").Value) == i)
+                    {
+                        foreach (XElement position in c.Elements("Position").ToList())
+                        {
+                            index = int.Parse(position.Attribute("Row").Value) * 35 + int.Parse(position.Attribute("Col").Value);
+                            if (this.Source.ElementAt(index) >= this.Level)
+                            {
+                                mark_no += position.Attribute("Value").Value;
+                                mark_count++;
+                            }
+                        }
+                    }
+                    i++;
+                }
+                if (mark_count == 4)
+                {
+                    this.Message.Element("Success").Add(new XElement("Class", string.Join("", mark_no)));
+                    return base.Validate();
+                }
+                else
+                {
+                    this.Message.Element("Failure").Add(new XElement("Message", "「班級」畫記錯誤。"));
 
-					return base.Validate();
-				}
-				else
-				{
-					this.Message.Element("Failure").Add(new XElement("Message", "「班級」畫記錯誤。"));
+                    return false & base.Validate();
+                }
+				//if (mark_count.ToList().Where(x=>x==1).Count() == 4)
+				//{
+				//	this.Message.Element("Success").Add(new XElement("Class", string.Join("", mark_no)));
 
-					return false & base.Validate();
-				}
+				//	return base.Validate();
+				//}
+				//else
+				//{
+				//	this.Message.Element("Failure").Add(new XElement("Message", "「班級」畫記錯誤。"));
+
+				//	return false & base.Validate();
+				//}
 			}
 		}
 		
 		//	解析「點名日期--年」之畫記
 		private sealed class YearParser : Decorator
 		{
-            static XDocument cardPositionSetting = XDocument.Parse(AttendanceReadCard.Properties.Resources.CardPositionSettingData);
-
-            static XElement attendanceCardData = cardPositionSetting.Document.Element("CardPositionSetting").Element("AttendanceCardData");
-
-            static XElement yearData = attendanceCardData.Element("Year");
-            
-            static int starpoint = int.Parse(yearData.Element("StartPosition").Value);
-
-            static int count = int.Parse(yearData.Element("Count").Value);
-
+            // 讀取xml設定
+            static XDocument cardSettingData = XDocument.Parse(AttendanceReadCard.Properties.Resources.CardSettingData);
+            List<XElement> yearPositionList = cardSettingData.Element("CardPositionSetting").Element("MappingDate").Element("Year").Elements("Position").ToList();
 
             //2016/8/31  穎驊 新增動態依據讀卡上的起始年，使用者可以調整設定
-            ConfigData Config { get; set; }
-            
-			private readonly IEnumerable<int> Position = Enumerable.Range(starpoint, count);
+            //ConfigData Config { get; set; }
+			//private readonly IEnumerable<int> Position = Enumerable.Range(starpoint, count);
 			public override bool Validate()
 			{
-				int mark_count = 0;
+				int mark_count = 0; // 畫卡幾次 
+                string mark_no = ""; // 值
 
                 //int mark_no = Program.StartYear;
-
                 //2016/8/31  穎驊 新增動態依據讀卡上的起始年，使用者可以調整設定，目前有104年、105年 可以在"設定"中改變
-                Config = Campus.Configuration.Config.App["學生出缺席讀卡設定"];
+                //Config = Campus.Configuration.Config.App["學生出缺席讀卡設定"];
+                //int mark_no = int.Parse(Config["讀卡起始年--點名卡"]);
 
-                int mark_no = int.Parse(Config["讀卡起始年--點名卡"]);
+                foreach (XElement position in yearPositionList)
+                {
+                    // 位置
+                    int index = int.Parse(position.Attribute("Row").Value) * 35 + int.Parse(position.Attribute("Col").Value);
 
-				for (int i = 0; i < this.Position.Count(); i++)
-				{
-					if (this.Source.ElementAt(this.Position.ElementAt(i)) >= this.Level)
-					{
-						mark_count += 1;
-						mark_no += i;
-					}
-				}
+                    if (this.Source.ElementAt(index) >= this.Level)
+                    {
+                        mark_count++;
+                        mark_no = position.Attribute("Value").Value;
+                    }
+                }
+
+				//for (int i = 0; i < this.Position.Count(); i++)
+				//{
+				//	if (this.Source.ElementAt(this.Position.ElementAt(i)) >= this.Level)
+				//	{
+				//		mark_count += 1;
+				//		mark_no += i;
+				//	}
+				//}
 				if (mark_count != 1)
 				{
 					this.Message.Element("Failure").Add(new XElement("Message", "「點名日期--年」畫記錯誤。"));
@@ -165,39 +184,41 @@ namespace AttendanceReadCard
 		//	解析「點名日期--月」之畫記
 		private sealed class MonthParser : Decorator
 		{
-            static XDocument cardPositionSetting = XDocument.Parse(AttendanceReadCard.Properties.Resources.CardPositionSettingData);
+            // 讀取xml設定
+            static XDocument cardSettingData = XDocument.Parse(AttendanceReadCard.Properties.Resources.CardSettingData);
+            static XElement month = cardSettingData.Element("CardPositionSetting").Element("MappingDate").Element("Month");
+            List<XElement> monthPositionList = month.Elements("Position").ToList();
 
-            static XElement attendanceCardData = cardPositionSetting.Document.Element("CardPositionSetting").Element("AttendanceCardData");
-
-            static XElement monthData = attendanceCardData.Element("Month");
-
-            static int starpoint = int.Parse(monthData.Element("StartPosition").Value);
-
-            static int count = int.Parse(monthData.Element("Count").Value);
-
-            private readonly IEnumerable<int> Position = Enumerable.Range(starpoint, count);
+            //private readonly IEnumerable<int> Position = Enumerable.Range(starpoint, count);
 			public override bool Validate()
 			{
 				int mark_count = 0;
 				int mark_no = 1;
-				for (int i = 0; i < this.Position.Count(); i++)
-				{
-					if (this.Source.ElementAt(this.Position.ElementAt(i)) >= this.Level)
-					{
-						mark_count += 1;
-						mark_no += i;
-					}
-				}
+                //for (int i = 0; i < this.Position.Count(); i++)
+                //{
+                //	if (this.Source.ElementAt(this.Position.ElementAt(i)) >= this.Level)
+                //	{
+                //		mark_count += 1;
+                //		mark_no += i;
+                //	}
+                //}
+                foreach (XElement mp in monthPositionList)
+                {
+                    int i = int.Parse(mp.Attribute("Row").Value) * 35 + int.Parse(mp.Attribute("Col").Value);
+                    if (this.Source.ElementAt(i) >= this.Level)
+                    {
+                        mark_count += 1;
+                        mark_no = int.Parse(mp.Attribute("Value").Value);
+                    }
+                }
 				if (mark_count != 1)
 				{
 					this.Message.Element("Failure").Add(new XElement("Message", "「點名日期--月」畫記錯誤。"));
-
 					return false & base.Validate();
 				}
 				else
 				{
 					this.Message.Element("Success").Add(new XElement("Month", mark_no));
-
 					return base.Validate();
 				}
 			}
@@ -206,45 +227,44 @@ namespace AttendanceReadCard
 		//	解析「點名日期--日」之畫記
 		private sealed class DayParser : Decorator
 		{
-
-            static XDocument cardPositionSetting = XDocument.Parse(AttendanceReadCard.Properties.Resources.CardPositionSettingData);
-
-            static XElement attendanceCardData = cardPositionSetting.Document.Element("CardPositionSetting").Element("AttendanceCardData");
-
-            static XElement dayData = attendanceCardData.Element("Day");
-
-            static int perRowcount = int.Parse(attendanceCardData.Element("PerRowCount").Value);
-
-            static int starpoint = int.Parse(dayData.Element("StartPosition").Value);
+            // 讀取xml設定
+            static XDocument cardSettingData = XDocument.Parse(AttendanceReadCard.Properties.Resources.CardSettingData);
+            static XElement day = cardSettingData.Element("CardPositionSetting").Element("MappingDate").Element("Day");
+            List<XElement> dayPositionList = day.Elements("Position").ToList();
 
             //日期 基本格式 每列 為 10、10、11 個 共31個
             //static int count = int.Parse(dayData.Element("Count").Value);
-
-
-            private readonly IEnumerable<int> Position = Enumerable.Range(starpoint, 10).Union(Enumerable.Range(starpoint + 1 * perRowcount, 10).Union(Enumerable.Range(starpoint + 2 * perRowcount, 11)));
-
+           // private readonly IEnumerable<int> Position = Enumerable.Range(starpoint, 10).Union(Enumerable.Range(starpoint + 1 * perRowCount, 10).Union(Enumerable.Range(starpoint + 2 * perRowCount, 11)));
 			public override bool Validate()
 			{
-				int mark_count = 0;
-				int mark_no = 1;
-				for (int j = 0; j < this.Position.Count(); j++)
-				{
-					if (this.Source.ElementAt(this.Position.ElementAt(j)) >= this.Level)
-					{
-						mark_count += 1;
-						mark_no += j;
-					}
-				}
+				int mark_count = 0; // 畫卡次數
+				string mark_no = ""; // 值
+                foreach (XElement dp in dayPositionList)
+                {
+                    int index = int.Parse(dp.Attribute("Row").Value) * 35 + int.Parse(dp.Attribute("Col").Value);
+
+                    if (this.Source.ElementAt(index) >= this.Level)
+                    {
+                        mark_no = dp.Attribute("Value").Value;
+                        mark_count++;
+                    }
+                }
+				//for (int j = 0; j < this.Position.Count(); j++)
+				//{
+				//	if (this.Source.ElementAt(this.Position.ElementAt(j)) >= this.Level)
+				//	{
+				//		mark_count += 1;
+				//		mark_no += j;
+				//	}
+				//}
 				if (mark_count == 1)
 				{
 					this.Message.Element("Success").Add(new XElement("Day", string.Join("", mark_no)));
-
 					return base.Validate();
 				}
 				else
 				{
 					this.Message.Element("Failure").Add(new XElement("Message", "「點名日期--日」畫記錯誤。"));
-
 					return false & base.Validate();
 				}
 			}
@@ -259,116 +279,138 @@ namespace AttendanceReadCard
 		//</Discipline>
 		private sealed class AttendanceParser : Decorator
 		{
-
-            ConfigData Config { get; set; }
-
-            static XDocument cardPositionSetting = XDocument.Parse(AttendanceReadCard.Properties.Resources.CardPositionSettingData);
-
-            static XElement attendanceCardData = cardPositionSetting.Document.Element("CardPositionSetting").Element("AttendanceCardData");
-
-            static XElement attendData = attendanceCardData.Element("AttendRecord");
-
-            static int perRowcount = int.Parse(attendanceCardData.Element("PerRowCount").Value);
-
-            static int starpoint = int.Parse(attendData.Element("StartPosition").Value);
-
-            static int count = int.Parse(attendData.Element("Count").Value);
-
-            static int totalRow = int.Parse(attendData.Element("TotalRow").Value);
-
-            //private readonly string[] PeriodMappings = new string[] { "早修/升旗", "第一節", "第二節", "第三節", "第四節", "午休", "第五節", "第六節", "第七節", "第八節" }; 
+            // 2017/11/14 羿均 
+            static XDocument cardSettingData = XDocument.Parse(AttendanceReadCard.Properties.Resources.CardSettingData);
+            static XElement MappingAttendance = cardSettingData.Element("CardPositionSetting").Element("MappingAttendance");
+            static int starRow = int.Parse(MappingAttendance.Element("StartRow").Value);
+            static List<XElement> periods = MappingAttendance.Descendants("Period").ToList();
+            static XElement paper = cardSettingData.Element("CardPositionSetting").Element("Paper");
+            static int colCount = int.Parse(paper.Element("PerRowCount").Value);
+            static int totalRow = int.Parse(paper.Element("PerColumnCount").Value);
+            
             public override bool Validate()
 			{
-    //            
-                //2016/9/1 穎驊筆記，就學生缺曠資料其起始點為35*6 +2 = 212
-				//int start = 212;
                 int position = 0;
-
-               
-
-
-                //2016/9/1 穎驊筆記，支援最多可以掃60行
-                for (int i=0; i< totalRow; i++)
-				{
-					XElement Discipline = new XElement("Discipline", new XAttribute("SeatNo", i + 1));
-					this.Message.Element("Success").Add(Discipline);
-					position = starpoint + count * i;
-
-					for (int j = 0; j <= 10; j++)
-					{
-						int count = 0;
-						for (int k = 0; k < 3; k++)
-						{
-							position += 1;
-							if (k == 2)
-								continue;
-
-                            ////2016/9/1 穎驊筆記，終於看懂讀卡機他的邏輯，在整張紙上會有35*60的讀取點，每一個讀取點機器會偵測畫卡的濃淡並賦予值
-                            //比如說第213格有畫卡濃度4，就會有[213,4]的陣列出現，接下來就要比較我們設定的畫卡濃度閾值，畫到有多濃 (>= this.Level)才算是有效訊號，
-
-
-                            //if (this.Source.ElementAt(position) >= this.Level)
-                            //    count++;
-                            
-                            //2016/9/1 穎驊註解，由於恩正說要另外支援畫卡假別的種類，
-                            //原本畫卡的訊號是兩洞一組，1_0為遲到早退，1_1為曠課
-                            //恩正說，1_0、1_1 不再綁定價別，也因此每一節次的1_0、1_1可以有各自的意義，且要再支援0_1的畫卡格式
-                            //所以不再可以用單純數數量的方式來做
-
-                            if (this.Source.ElementAt(position) >= this.Level) 
+                int seatNumber = 1;
+                int c = 0; // 從1號開始，第0列
+                // 缺曠畫卡範圍
+                for (int i = starRow; i < totalRow; i++)
+                {
+                    XElement Discipline = new XElement("Discipline", new XAttribute("SeatNo", seatNumber++));
+                    this.Message.Element("Success").Add(Discipline);
+                    
+                    foreach (XElement period in periods)
+                    {
+                        string mark = "";
+                        position = int.Parse(period.Attribute("StartCol").Value) + (starRow + c) * colCount;
+                        for (int n = 0; n < 2; n++)
+                        {
+                            if (this.Source.ElementAt(position + n) >= this.Level)
                             {
-                                //第一個洞有數到 >> +1
-                                if (k == 0) 
-                                {
-                                    count += 1;                                
-                                }
-
-                                //第二個洞有數到 >> +2
-                                if (k == 1) 
-                                {
-                                    count += 2;                                
-                                }                                                        
-                            }                               
-						}
-
-						XElement Period = new XElement("Period", new XAttribute("Name", Program.PeriodNameList[j]));
-						Discipline.Add(Period);
-
-                        //列出卡片上所有可設定節次。
-                        string[] periods = Program.PeriodNameList;
-                        
-                        //下面是舊的Code 單純數數量
-
-                        //if (count == 1)
-                        //{
-                        //    Period.Add(new XElement("Reason", "遲"));
-                        //}
-                        //if (count == 2)
-                        //{
-                        //    Period.Add(new XElement("Reason", "缺"));
-                        //}
-
-                        Config = Campus.Configuration.Config.App["學生出缺席讀卡設定"];
-
-                        //只畫第一洞
-                        if (count == 1)
-                        {
-                            Period.Add(new XElement("Reason", Config[Program.PeriodNameList[j] + "leave_1_0"]));
+                                mark += 1;
+                            }
+                            else
+                                mark += 0;
                         }
-                        //只畫第二洞
-                        if (count == 2)
+
+                        XElement Period = new XElement("Period", new XAttribute("Name", period.Attribute("Value").Value));
+                        Discipline.Add(Period);
+
+                        List<XElement> absence = period.Elements("Absence").ToList();
+                        foreach (XElement ab in absence)
                         {
-                            Period.Add(new XElement("Reason", Config[Program.PeriodNameList[j] + "leave_0_1"]));
+                            if (mark == ab.Attribute("Mark").Value)
+                            {
+                                Period.Add(new XElement("Reason", ab.Attribute("Value").Value));
+                            }
                         }
-                        //一洞+二洞都有畫
-                        if (count == 3)
-                        {
-                            Period.Add(new XElement("Reason", Config[Program.PeriodNameList[j]+"leave_1_1"]));
-                        }
-					}
-				}
-				return true & base.Validate();
-			}
+                    }
+                    // 換下一個座號
+                    c++;
+                }
+                return true & base.Validate();
+
+                //            //2016/9/1 穎驊筆記，支援最多可以掃60行
+                //            for (int i=0; i< totalRow; i++)
+                //{
+                //	XElement Discipline = new XElement("Discipline", new XAttribute("SeatNo", i + 1));
+                //	this.Message.Element("Success").Add(Discipline);
+                //	position = starpoint + count * i;
+
+                //	for (int j = 0; j <= 10; j++)
+                //	{
+                //		int count = 0;
+                //		for (int k = 0; k < 3; k++)
+                //		{
+                //			position += 1;
+                //			if (k == 2)
+                //				continue;
+
+                //                        ////2016/9/1 穎驊筆記，終於看懂讀卡機他的邏輯，在整張紙上會有35*60的讀取點，每一個讀取點機器會偵測畫卡的濃淡並賦予值
+                //                        //比如說第213格有畫卡濃度4，就會有[213,4]的陣列出現，接下來就要比較我們設定的畫卡濃度閾值，畫到有多濃 (>= this.Level)才算是有效訊號，
+
+                //                        //if (this.Source.ElementAt(position) >= this.Level)
+                //                        //    count++;
+
+                //                        //2016/9/1 穎驊註解，由於恩正說要另外支援畫卡假別的種類，
+                //                        //原本畫卡的訊號是兩洞一組，1_0為遲到早退，1_1為曠課
+                //                        //恩正說，1_0、1_1 不再綁定價別，也因此每一節次的1_0、1_1可以有各自的意義，且要再支援0_1的畫卡格式
+                //                        //所以不再可以用單純數數量的方式來做
+
+                //                        if (this.Source.ElementAt(position) >= this.Level) 
+                //                        {
+                //                            //第一個洞有數到 >> +1
+                //                            if (k == 0) 
+                //                            {
+                //                                count += 1;                                
+                //                            }
+
+                //                            //第二個洞有數到 >> +2
+                //                            if (k == 1) 
+                //                            {
+                //                                count += 2;                                
+                //                            }                                                        
+                //                        }                               
+                //		}
+
+                //		XElement Period = new XElement("Period", new XAttribute("Name", Program.PeriodNameList[j]));
+                //		Discipline.Add(Period);
+
+                //                    //列出卡片上所有可設定節次。
+                //                    string[] periods = Program.PeriodNameList;
+
+                //                    //下面是舊的Code 單純數數量
+
+                //                    //if (count == 1)
+                //                    //{
+                //                    //    Period.Add(new XElement("Reason", "遲"));
+                //                    //}
+                //                    //if (count == 2)
+                //                    //{
+                //                    //    Period.Add(new XElement("Reason", "缺"));
+                //                    //}
+
+                //                    Config = Campus.Configuration.Config.App["學生出缺席讀卡設定"];
+
+                //                    //只畫第一洞
+                //                    if (count == 1)
+                //                    {
+                //                        Period.Add(new XElement("Reason", Config[Program.PeriodNameList[j] + "leave_1_0"]));
+                //                    }
+                //                    //只畫第二洞
+                //                    if (count == 2)
+                //                    {
+                //                        Period.Add(new XElement("Reason", Config[Program.PeriodNameList[j] + "leave_0_1"]));
+                //                    }
+                //                    //一洞+二洞都有畫
+                //                    if (count == 3)
+                //                    {
+                //                        Period.Add(new XElement("Reason", Config[Program.PeriodNameList[j]+"leave_1_1"]));
+                //                    }
+                //	}
+                //}
+                //return true & base.Validate();
+            }
 		}
 		
 		private sealed class LeaveStudentNumberParser : Decorator

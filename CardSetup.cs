@@ -23,48 +23,45 @@ namespace AttendanceReadCard
                 Campus.Configuration.Config.App.Sync("學生出缺席讀卡設定");
                 ConfigData cd = Campus.Configuration.Config.App["學生出缺席讀卡設定"];
 
-                //2016/9/2 穎驊註解，不再使用遲、缺
-                //LateString = cd["遲"];
-                //AbsenceString = cd["缺"];
-
                 if (cd["OverrideOption"] == "覆蓋現有資料")
                     OverrideData = true;
                 else
                     OverrideData = false; //預設是這個選項。
 
-
-                //2016/9/2 穎驊註解，不再使用遲、缺
-
-                //if (string.IsNullOrWhiteSpace(LateString))
-                //    throw new Exception("讀卡設定缺少設定「遲」的對應缺曠類別。");
-
-                //if (string.IsNullOrWhiteSpace(AbsenceString))
-                //    throw new Exception("讀卡設定缺少設定「缺」的對應缺曠類別。");
-
-
-
-
+                // 2017/11/13 羿均
                 //節次對照表。
                 PeriodMapping = new Dictionary<string, string>();
                 PeriodIndex = new Dictionary<string, int>();
-
+                XDocument cardSettingData = XDocument.Parse(AttendanceReadCard.Properties.Resources.CardSettingData);
+                List<XElement> period = cardSettingData.Element("CardPositionSetting").Element("MappingAttendance").Elements("Period").ToList();
                 int index = -1;
-                foreach (string period in Program.PeriodNameList)
+                foreach (XElement p in period)
                 {
                     index++;
-
-                    if (PeriodMapping.ContainsKey(period))
+                    if (PeriodMapping.ContainsKey(p.Attribute("Value").Value))
                         throw new Exception("節次對照設定有重覆！");
-
-                    if (string.IsNullOrWhiteSpace(cd[period]))
+                    if (string.IsNullOrWhiteSpace(p.Attribute("Value").Value))
                         continue;
-
-                    PeriodMapping.Add(period, cd[period]);
-                    PeriodIndex.Add(cd[period], index);
+                    PeriodMapping.Add(p.Attribute("Value").Value, p.Attribute("Value").Value);
+                    PeriodIndex.Add(p.Attribute("Value").Value, index);
                 }
+                //foreach (string period in Program.PeriodNameList)
+                //{
+                //    index++;
 
-				//	假別對照表
-				AbsenceTypeMapping = new Dictionary<string, string>();
+                //    if (PeriodMapping.ContainsKey(period))
+                //        throw new Exception("節次對照設定有重覆！");
+
+                //    if (string.IsNullOrWhiteSpace(cd[period]))
+                //        continue;
+
+                //    PeriodMapping.Add(period, cd[period]);
+                //    PeriodIndex.Add(cd[period], index);
+                //}
+
+                //	假別對照表
+                
+                AbsenceTypeMapping = new Dictionary<string, string>();
 				index = -1;
 				foreach (string type in Program.LeaveNameList)
 				{

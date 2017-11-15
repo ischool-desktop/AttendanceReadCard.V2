@@ -19,7 +19,7 @@ namespace AttendanceReadCard.Properties {
     // 類別透過 ResGen 或 Visual Studio 這類工具。
     // 若要加入或移除成員，請編輯您的 .ResX 檔，然後重新執行 ResGen
     // (利用 /str 選項)，或重建您的 VS 專案。
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -62,28 +62,47 @@ namespace AttendanceReadCard.Properties {
         
         /// <summary>
         ///   查詢類似 &lt;CardPositionSetting&gt;
-        ///    &lt;AttendanceCardData&gt;        
+        ///  &lt;!--2017/11/1，穎驊註解， 此份xml 為紀載點名卡的設定以便未來能夠提供不同學校的讀卡設定，本例為葳格高級中學2017/11 的版本  --&gt;
+        ///  &lt;!--PerRowCount 代表有幾行、PerColumncount代表有幾列  --&gt;
+        ///  &lt;!--StartPosition 代表其資料的起始點，Count代表往右數幾格，TotalRow 代表總共有幾列 ，Peroids 內容為卡片上的節次資訊 --&gt;
+        ///  &lt;!--在程式碼內設定中斷點，實際執行看看，會更清楚讀卡的運作，(基本上就是數格子，可詳見ReadMe 資料夾內說明) --&gt;
+        ///    &lt;AttendanceCardData&gt;      
+        ///      &lt;PerRowCount&gt;35&lt;/PerRowCount&gt;
+        ///      &lt;PerColumncount&gt;65&lt;/PerColumncount&gt;      
         ///      &lt;Grade&gt;      
-        ///        &lt;StartPosition&gt;&lt;/StartPosition&gt;      
-        ///      &lt;/Grade&gt;        
-        ///      &lt;Class&gt;          
-        ///        &lt;StartPosition&gt;&lt;/StartPosition&gt;        
-        ///      &lt;/Class&gt;                  
-        ///      &lt;Year&gt;      
-        ///        &lt;StartPosition&gt;&lt;/StartPosition&gt;      
-        ///      &lt;/Year&gt;
-        ///      &lt;Month&gt;
-        ///        &lt;StartPosition&gt;&lt;/StartPosition&gt;
-        ///      &lt;/Month&gt;
-        ///      &lt;Day&gt;
-        ///        &lt;StartPosition&gt;&lt;/StartPosition&gt;
-        ///      &lt;/Day&gt;      
-        ///    &lt;/AttendanceCardData&gt;
-        /// [字串的其餘部分已遭截斷]&quot;; 的當地語系化字串。
+        ///        &lt;StartPosition&gt;4&lt;/StartPosition&gt;
+        ///        &lt;Count&gt;3&lt;/Count [字串的其餘部分已遭截斷]&quot;; 的當地語系化字串。
         /// </summary>
         internal static string CardPositionSettingData {
             get {
                 return ResourceManager.GetString("CardPositionSettingData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 &lt;CardPositionSetting&gt;
+        ///  &lt;!--2017/11/08，羿均參考config[學生出缺席讀卡設定]--&gt;
+        ///
+        ///  &lt;!--紙張行、列數--&gt;
+        ///  &lt;Paper&gt;
+        ///    &lt;PerRowCount&gt;35&lt;/PerRowCount&gt;
+        ///    &lt;PerColumnCount&gt;56&lt;/PerColumnCount&gt;
+        ///  &lt;/Paper&gt;
+        ///  &lt;!--第一區塊:年級、班級--&gt;
+        ///  &lt;MappingClass Mode=&quot;classCode&quot;&gt;
+        ///    &lt;GradeYear&gt;
+        ///      &lt;Position Row=&quot;0&quot; Col=&quot;4&quot; Value=&quot;1&quot; /&gt;
+        ///      &lt;Position Row=&quot;0&quot; Col=&quot;5&quot; Value=&quot;2&quot; /&gt;
+        ///      &lt;Position Row=&quot;0&quot; Col=&quot;6&quot; Value=&quot;3&quot; /&gt;
+        ///    &lt;/GradeYear&gt;
+        ///    &lt;Class&gt;
+        ///      &lt;!--4碼組合 依序第一碼、第二碼、第三碼、第四碼--&gt;
+        ///      &lt;Code Position=&quot;1&quot;&gt;
+        ///        &lt;Position Row= [字串的其餘部分已遭截斷]&quot;; 的當地語系化字串。
+        /// </summary>
+        internal static string CardSettingData {
+            get {
+                return ResourceManager.GetString("CardSettingData", resourceCulture);
             }
         }
         

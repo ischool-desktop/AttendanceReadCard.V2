@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnClose = new DevComponents.DotNetBar.ButtonX();
             this.btnSave = new DevComponents.DotNetBar.ButtonX();
             this.intSchoolYear = new DevComponents.Editors.IntegerInput();
@@ -36,6 +36,11 @@
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
             this.dgvAttendance = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.btnBeginRead = new DevComponents.DotNetBar.ButtonX();
+            this.btnAbsence = new DevComponents.DotNetBar.ButtonItem();
+            this.btnLeave = new DevComponents.DotNetBar.ButtonItem();
+            this.labelX3 = new DevComponents.DotNetBar.LabelX();
+            this.intValue = new DevComponents.Editors.IntegerInput();
             this.chDateTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chClassName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chSeatNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,11 +57,6 @@
             this.p8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.p9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.p10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnBeginRead = new DevComponents.DotNetBar.ButtonX();
-            this.btnAbsence = new DevComponents.DotNetBar.ButtonItem();
-            this.btnLeave = new DevComponents.DotNetBar.ButtonItem();
-            this.labelX3 = new DevComponents.DotNetBar.LabelX();
-            this.intValue = new DevComponents.Editors.IntegerInput();
             ((System.ComponentModel.ISupportInitialize)(this.intSchoolYear)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.intSemester)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAttendance)).BeginInit();
@@ -184,14 +184,14 @@
             this.p8,
             this.p9,
             this.p10});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvAttendance.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvAttendance.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgvAttendance.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgvAttendance.HighlightSelectedColumnHeaders = false;
             this.dgvAttendance.Location = new System.Drawing.Point(7, 51);
@@ -205,140 +205,6 @@
             this.dgvAttendance.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvAttendance_CellFormatting);
             this.dgvAttendance.SelectionChanged += new System.EventHandler(this.dgvAttendance_SelectionChanged);
             // 
-            // chDateTime
-            // 
-            this.chDateTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.chDateTime.DataPropertyName = "DateTime";
-            this.chDateTime.HeaderText = "日期";
-            this.chDateTime.Name = "chDateTime";
-            this.chDateTime.ReadOnly = true;
-            this.chDateTime.Width = 59;
-            // 
-            // chClassName
-            // 
-            this.chClassName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.chClassName.DataPropertyName = "ClassName";
-            this.chClassName.HeaderText = "班級";
-            this.chClassName.Name = "chClassName";
-            this.chClassName.ReadOnly = true;
-            this.chClassName.Width = 59;
-            // 
-            // chSeatNo
-            // 
-            this.chSeatNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.chSeatNo.DataPropertyName = "SeatNo";
-            this.chSeatNo.HeaderText = "座號";
-            this.chSeatNo.Name = "chSeatNo";
-            this.chSeatNo.ReadOnly = true;
-            this.chSeatNo.Width = 59;
-            // 
-            // chName
-            // 
-            this.chName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.chName.DataPropertyName = "Name";
-            this.chName.HeaderText = "姓名";
-            this.chName.Name = "chName";
-            this.chName.ReadOnly = true;
-            this.chName.Width = 59;
-            // 
-            // chStudentNumber
-            // 
-            this.chStudentNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.chStudentNumber.DataPropertyName = "StudentNumber";
-            this.chStudentNumber.HeaderText = "學號";
-            this.chStudentNumber.Name = "chStudentNumber";
-            this.chStudentNumber.ReadOnly = true;
-            this.chStudentNumber.Width = 59;
-            // 
-            // p0
-            // 
-            this.p0.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.p0.DataPropertyName = "Period0";
-            this.p0.HeaderText = "早/升";
-            this.p0.Name = "p0";
-            this.p0.ReadOnly = true;
-            this.p0.Width = 64;
-            // 
-            // p1
-            // 
-            this.p1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.p1.DataPropertyName = "Period1";
-            this.p1.HeaderText = "一";
-            this.p1.Name = "p1";
-            this.p1.ReadOnly = true;
-            // 
-            // p2
-            // 
-            this.p2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.p2.DataPropertyName = "Period2";
-            this.p2.HeaderText = "二";
-            this.p2.Name = "p2";
-            this.p2.ReadOnly = true;
-            // 
-            // p3
-            // 
-            this.p3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.p3.DataPropertyName = "Period3";
-            this.p3.HeaderText = "三";
-            this.p3.Name = "p3";
-            this.p3.ReadOnly = true;
-            // 
-            // p4
-            // 
-            this.p4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.p4.DataPropertyName = "Period4";
-            this.p4.HeaderText = "四";
-            this.p4.Name = "p4";
-            this.p4.ReadOnly = true;
-            // 
-            // p5
-            // 
-            this.p5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.p5.DataPropertyName = "Period5";
-            this.p5.HeaderText = "午休";
-            this.p5.Name = "p5";
-            this.p5.ReadOnly = true;
-            // 
-            // p6
-            // 
-            this.p6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.p6.DataPropertyName = "Period6";
-            this.p6.HeaderText = "五";
-            this.p6.Name = "p6";
-            this.p6.ReadOnly = true;
-            // 
-            // p7
-            // 
-            this.p7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.p7.DataPropertyName = "Period7";
-            this.p7.HeaderText = "六";
-            this.p7.Name = "p7";
-            this.p7.ReadOnly = true;
-            // 
-            // p8
-            // 
-            this.p8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.p8.DataPropertyName = "Period8";
-            this.p8.HeaderText = "七";
-            this.p8.Name = "p8";
-            this.p8.ReadOnly = true;
-            // 
-            // p9
-            // 
-            this.p9.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.p9.DataPropertyName = "Period9";
-            this.p9.HeaderText = "八";
-            this.p9.Name = "p9";
-            this.p9.ReadOnly = true;
-            // 
-            // p10
-            // 
-            this.p10.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.p10.DataPropertyName = "Period10";
-            this.p10.HeaderText = "九";
-            this.p10.Name = "p10";
-            this.p10.ReadOnly = true;
-            // 
             // btnBeginRead
             // 
             this.btnBeginRead.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
@@ -351,12 +217,7 @@
             this.btnBeginRead.Size = new System.Drawing.Size(75, 23);
             this.btnBeginRead.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.btnBeginRead.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.btnAbsence,});
-
-            //2016.9.12 穎驊註解，取消請假卡的選項，將其功能另外移轉，但因為許多Code 與點名卡重疊不好拆解，僅註解取消UI功能
-            //this.btnLeave});
-
-
+            this.btnAbsence});
             this.btnBeginRead.TabIndex = 4;
             this.btnBeginRead.Text = "開始讀卡";
             // 
@@ -406,6 +267,150 @@
             this.intValue.Size = new System.Drawing.Size(80, 25);
             this.intValue.TabIndex = 5;
             this.intValue.Value = 5;
+            // 
+            // chDateTime
+            // 
+            this.chDateTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.chDateTime.DataPropertyName = "DateTime";
+            this.chDateTime.HeaderText = "日期";
+            this.chDateTime.Name = "chDateTime";
+            this.chDateTime.ReadOnly = true;
+            this.chDateTime.Width = 59;
+            // 
+            // chClassName
+            // 
+            this.chClassName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.chClassName.DataPropertyName = "ClassName";
+            this.chClassName.HeaderText = "班級";
+            this.chClassName.Name = "chClassName";
+            this.chClassName.ReadOnly = true;
+            this.chClassName.Width = 59;
+            // 
+            // chSeatNo
+            // 
+            this.chSeatNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.chSeatNo.DataPropertyName = "SeatNo";
+            this.chSeatNo.HeaderText = "座號";
+            this.chSeatNo.Name = "chSeatNo";
+            this.chSeatNo.ReadOnly = true;
+            this.chSeatNo.Width = 59;
+            // 
+            // chName
+            // 
+            this.chName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.chName.DataPropertyName = "Name";
+            this.chName.HeaderText = "姓名";
+            this.chName.Name = "chName";
+            this.chName.ReadOnly = true;
+            this.chName.Width = 59;
+            // 
+            // chStudentNumber
+            // 
+            this.chStudentNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.chStudentNumber.DataPropertyName = "StudentNumber";
+            this.chStudentNumber.HeaderText = "學號";
+            this.chStudentNumber.Name = "chStudentNumber";
+            this.chStudentNumber.ReadOnly = true;
+            this.chStudentNumber.Width = 59;
+            // 
+            // p0
+            // 
+            this.p0.DataPropertyName = "Period0";
+            this.p0.HeaderText = "早修/升旗";
+            this.p0.Name = "p0";
+            this.p0.ReadOnly = true;
+            this.p0.Visible = false;
+            this.p0.Width = 59;
+            // 
+            // p1
+            // 
+            this.p1.DataPropertyName = "Period1";
+            this.p1.HeaderText = "一";
+            this.p1.Name = "p1";
+            this.p1.ReadOnly = true;
+            this.p1.Visible = false;
+            this.p1.Width = 59;
+            // 
+            // p2
+            // 
+            this.p2.DataPropertyName = "Period2";
+            this.p2.HeaderText = "二";
+            this.p2.Name = "p2";
+            this.p2.ReadOnly = true;
+            this.p2.Visible = false;
+            this.p2.Width = 59;
+            // 
+            // p3
+            // 
+            this.p3.DataPropertyName = "Period3";
+            this.p3.HeaderText = "三";
+            this.p3.Name = "p3";
+            this.p3.ReadOnly = true;
+            this.p3.Visible = false;
+            this.p3.Width = 59;
+            // 
+            // p4
+            // 
+            this.p4.DataPropertyName = "Period4";
+            this.p4.HeaderText = "四";
+            this.p4.Name = "p4";
+            this.p4.ReadOnly = true;
+            this.p4.Visible = false;
+            this.p4.Width = 59;
+            // 
+            // p5
+            // 
+            this.p5.DataPropertyName = "Period5";
+            this.p5.HeaderText = "午休";
+            this.p5.Name = "p5";
+            this.p5.ReadOnly = true;
+            this.p5.Visible = false;
+            this.p5.Width = 59;
+            // 
+            // p6
+            // 
+            this.p6.DataPropertyName = "Period6";
+            this.p6.HeaderText = "五";
+            this.p6.Name = "p6";
+            this.p6.ReadOnly = true;
+            this.p6.Visible = false;
+            this.p6.Width = 59;
+            // 
+            // p7
+            // 
+            this.p7.DataPropertyName = "Period7";
+            this.p7.HeaderText = "六";
+            this.p7.Name = "p7";
+            this.p7.ReadOnly = true;
+            this.p7.Visible = false;
+            this.p7.Width = 59;
+            // 
+            // p8
+            // 
+            this.p8.DataPropertyName = "Period8";
+            this.p8.HeaderText = "七";
+            this.p8.Name = "p8";
+            this.p8.ReadOnly = true;
+            this.p8.Visible = false;
+            this.p8.Width = 59;
+            // 
+            // p9
+            // 
+            this.p9.DataPropertyName = "Period9";
+            this.p9.HeaderText = "八";
+            this.p9.Name = "p9";
+            this.p9.ReadOnly = true;
+            this.p9.Visible = false;
+            this.p9.Width = 59;
+            // 
+            // p10
+            // 
+            this.p10.DataPropertyName = "Period10";
+            this.p10.HeaderText = "九";
+            this.p10.Name = "p10";
+            this.p10.ReadOnly = true;
+            this.p10.Visible = false;
+            this.p10.Width = 59;
             // 
             // ReadCardForm
             // 

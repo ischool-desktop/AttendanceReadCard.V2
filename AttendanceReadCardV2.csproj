@@ -169,11 +169,15 @@
   <ItemGroup>
     <Content Include="ReadMe\Example.png" />
     <Content Include="ReadMe\初次使用請看我.txt" />
+    <Content Include="Resources\CardSettingData.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Resources\LeaveCardPositionSettingData.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Resources\CardPositionSettingData.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="LeaveExampleData.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -186,7 +190,9 @@
     <Content Include="Lib\FISCA.Presentation.pdb" />
     <Content Include="Lib\FISCA.xml" />
     <Content Include="Lib\K12.Data.dll" />
-    <Content Include="Lib\K12.Data.xml" />
+    <Content Include="Lib\K12.Data.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Resources\sandglass_unlock_64.png" />
     <None Include="複製 - ExampleData.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

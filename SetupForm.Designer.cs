@@ -148,6 +148,7 @@
             this.labelX3.Size = new System.Drawing.Size(60, 21);
             this.labelX3.TabIndex = 7;
             this.labelX3.Text = "節次對照";
+            this.labelX3.Visible = false;
             // 
             // dgvPeriodMap
             // 
@@ -180,6 +181,7 @@
             this.dgvPeriodMap.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dgvPeriodMap.Size = new System.Drawing.Size(447, 316);
             this.dgvPeriodMap.TabIndex = 8;
+            this.dgvPeriodMap.Visible = false;
             this.dgvPeriodMap.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPeriodMap_CellClick);
             this.dgvPeriodMap.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dgvPeriodMap_KeyUp);
             // 
@@ -358,6 +360,7 @@
             this.labelX8.Size = new System.Drawing.Size(87, 21);
             this.labelX8.TabIndex = 17;
             this.labelX8.Text = "讀卡起始年份";
+            this.labelX8.Visible = false;
             // 
             // cboReadingCardStartYear
             // 
@@ -370,6 +373,7 @@
             this.cboReadingCardStartYear.Size = new System.Drawing.Size(88, 25);
             this.cboReadingCardStartYear.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.cboReadingCardStartYear.TabIndex = 18;
+            this.cboReadingCardStartYear.Visible = false;
             // 
             // SetupForm
             // 
