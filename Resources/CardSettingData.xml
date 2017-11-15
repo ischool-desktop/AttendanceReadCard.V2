@@ -1,10 +1,10 @@
-<CardPositionSetting>
+﻿<CardPositionSetting>
   <!--2017/11/08，羿均參考config[學生出缺席讀卡設定]-->
 
   <!--紙張行、列數-->
   <Paper>
     <PerRowCount>35</PerRowCount>
-    <PerColumnCount>56</PerColumnCount>
+    <PerColumnCount>65</PerColumnCount>
   </Paper>
   <!--第一區塊:年級、班級-->
   <MappingClass Mode="classCode">
@@ -96,42 +96,42 @@
       <Position Row="1" Col="28" Value="12" />
     </Month>
     <Day>
-      <Position Row="3" Col="17" Value="1" />
-      <Position Row="3" Col="18" Value="2" />
-      <Position Row="3" Col="19" Value="3" />
-      <Position Row="3" Col="20" Value="4" />
-      <Position Row="3" Col="21" Value="5" />
-      <Position Row="3" Col="22" Value="6" />
-      <Position Row="3" Col="23" Value="7" />
-      <Position Row="3" Col="24" Value="8" />
-      <Position Row="3" Col="25" Value="9" />
-      <Position Row="3" Col="26" Value="10" />
-      <Position Row="4" Col="17" Value="11" />
-      <Position Row="4" Col="18" Value="12" />
-      <Position Row="4" Col="19" Value="13" />
-      <Position Row="4" Col="20" Value="14" />
-      <Position Row="4" Col="21" Value="15" />
-      <Position Row="4" Col="22" Value="16" />
-      <Position Row="4" Col="23" Value="17" />
-      <Position Row="4" Col="24" Value="18" />
-      <Position Row="4" Col="25" Value="19" />
-      <Position Row="4" Col="26" Value="20" />
-      <Position Row="5" Col="17" Value="21" />
-      <Position Row="5" Col="18" Value="22" />
-      <Position Row="5" Col="19" Value="23" />
-      <Position Row="5" Col="20" Value="24" />
-      <Position Row="5" Col="21" Value="25" />
-      <Position Row="5" Col="22" Value="26" />
-      <Position Row="5" Col="23" Value="27" />
-      <Position Row="5" Col="24" Value="28" />
-      <Position Row="5" Col="25" Value="29" />
-      <Position Row="5" Col="26" Value="30" />
-      <Position Row="5" Col="27" Value="31" />
+      <Position Row="2" Col="17" Value="1" />
+      <Position Row="2" Col="18" Value="2" />
+      <Position Row="2" Col="19" Value="3" />
+      <Position Row="2" Col="20" Value="4" />
+      <Position Row="2" Col="21" Value="5" />
+      <Position Row="2" Col="22" Value="6" />
+      <Position Row="2" Col="23" Value="7" />
+      <Position Row="2" Col="24" Value="8" />
+      <Position Row="2" Col="25" Value="9" />
+      <Position Row="2" Col="26" Value="10" />
+      <Position Row="3" Col="17" Value="11" />
+      <Position Row="3" Col="18" Value="12" />
+      <Position Row="3" Col="19" Value="13" />
+      <Position Row="3" Col="20" Value="14" />
+      <Position Row="3" Col="21" Value="15" />
+      <Position Row="3" Col="22" Value="16" />
+      <Position Row="3" Col="23" Value="17" />
+      <Position Row="3" Col="24" Value="18" />
+      <Position Row="3" Col="25" Value="19" />
+      <Position Row="3" Col="26" Value="20" />
+      <Position Row="4" Col="17" Value="21" />
+      <Position Row="4" Col="18" Value="22" />
+      <Position Row="4" Col="19" Value="23" />
+      <Position Row="4" Col="20" Value="24" />
+      <Position Row="4" Col="21" Value="25" />
+      <Position Row="4" Col="22" Value="26" />
+      <Position Row="4" Col="23" Value="27" />
+      <Position Row="4" Col="24" Value="28" />
+      <Position Row="4" Col="25" Value="29" />
+      <Position Row="4" Col="26" Value="30" />
+      <Position Row="4" Col="27" Value="31" />
     </Day>
   </MappingDate>
   <!--第三區塊:學生缺曠畫卡範圍-->
   <MappingAttendance>
-    <StartRow>6</StartRow>
+    <StartRow>5</StartRow>
     <Period StartCol="3" Value="早修/升旗">
       <Absence Mark="10" Value="遲到" />
       <Absence Mark="01" Value=" " />
@@ -157,27 +157,32 @@
       <Absence Mark="01" Value=" " />
       <Absence Mark="11" Value="曠課" />
     </Period>
-    <Period StartCol="18" Value="午休">
+    <Period StartCol="18" Value="第五節">
       <Absence Mark="10" Value="遲到" />
       <Absence Mark="01" Value=" " />
       <Absence Mark="11" Value="曠課" />
     </Period>
-    <Period StartCol="21" Value="第五節">
+    <Period StartCol="21" Value="第六節">
       <Absence Mark="10" Value="遲到" />
       <Absence Mark="01" Value=" " />
       <Absence Mark="11" Value="曠課" />
     </Period>
-    <Period StartCol="24" Value="第六節">
+    <Period StartCol="24" Value="第七節">
       <Absence Mark="10" Value="遲到" />
       <Absence Mark="01" Value=" " />
       <Absence Mark="11" Value="曠課" />
     </Period>
-    <Period StartCol="27" Value="第七節">
+    <Period StartCol="27" Value="第八節">
       <Absence Mark="10" Value="遲到" />
       <Absence Mark="01" Value=" " />
       <Absence Mark="11" Value="曠課" />
     </Period>
-    <Period StartCol="30" Value="第八節">
+    <Period StartCol="30" Value="第九節">
+      <Absence Mark="10" Value="遲到" />
+      <Absence Mark="01" Value=" " />
+      <Absence Mark="11" Value="曠課" />
+    </Period>
+    <Period StartCol="33" Value="第十節">
       <Absence Mark="10" Value="遲到" />
       <Absence Mark="01" Value=" " />
       <Absence Mark="11" Value="曠課" />
