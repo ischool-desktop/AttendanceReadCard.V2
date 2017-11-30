@@ -45,22 +45,16 @@ namespace AttendanceReadCard
             AddPeriod();
         }
 
-        //2017/11/1 穎驊紀錄，下面這項不會再被用到，因為每張卡片每年都有可能會改變節次，
-        // 經由討論 統一在卡片設定的 CardPositionSettingData 統一紀錄
-
-        /// <summary>
-        /// 卡片上所提供的節次列表。
-        /// </summary>
-        //public static string[] PeriodNameList = new string[] { "早修/升旗",
-        //            "第一節", "第二節", "第三節", "第四節", "午休",
-        //            "第五節", "第六節", "第七節", "第八節", "第九節"};
-
         public static string[] PeriodNameList = new string[] { };
 
         public static void AddPeriod()
         {
-            // 2017/11/13 羿均修改，新讀卡設定xml檔(CardSettingData)
-            XDocument cardSettingData = XDocument.Parse(AttendanceReadCard.Properties.Resources.CardSettingData);
+            // 2017/11/30 羿均 ，透過config新增一個CardSettingData的欄位，再透過中央管理系統將讀卡解析設定update到該欄位
+            K12.Data.Configuration.ConfigData _CardSettingData = K12.Data.School.Configuration["CardSettingData"];
+            _CardSettingData.Save();
+
+            // 讀取卡片解析
+            XDocument cardSettingData = XDocument.Parse(_CardSettingData.PreviousData.OuterXml);
             XElement MappingAttendance = cardSettingData.Element("CardPositionSetting").Element("MappingAttendance");
             PeriodNameList = MappingAttendance.Descendants("Period").Select(element => element.Attribute("Value").Value).ToArray();
         }

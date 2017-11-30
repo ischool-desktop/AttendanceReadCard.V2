@@ -72,21 +72,6 @@ namespace AttendanceReadCard
                 ch_1_1.Items.Add("");
                 ch_0_1.Items.Add("");
 
-                //2016.9.12 穎驊註解，取消請假卡的選項，將其功能另外移轉，但因為許多Code 與點名卡重疊不好拆解，僅註解取消UI功能
-                //如需找尋請假卡功能，請去抓請假卡模組
-
-                ////顯示「假別對照表」於 DataGridView。
-                //string[] leaves = Program.LeaveNameList;
-                //foreach (string leave in leaves)
-                //{
-                //    DataGridViewRow row = new DataGridViewRow();
-                //    row.CreateCells(dgvLeaveMap, leave, Config[leave]);
-                //    dgvLeaveMap.Rows.Add(row);
-                //}
-
-                //cboLateMap.Text = Config["遲"];
-                //cboEmptyMap.Text = Config["缺"];
-
                 cboOverride.Text = Config["OverrideOption"];
 
                 if (string.IsNullOrWhiteSpace(cboOverride.Text))

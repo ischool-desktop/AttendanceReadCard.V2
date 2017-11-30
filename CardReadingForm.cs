@@ -66,17 +66,19 @@ namespace AttendanceReadCard
         {
             try
             {
-               // XDocument cardPositionSetting = XDocument.Parse(AttendanceReadCard.Properties.Resources.CardPositionSettingData);
-               // XElement attendanceCardData = cardPositionSetting.Document.Element("CardPositionSetting").Element("AttendanceCardData");
+                // XDocument cardPositionSetting = XDocument.Parse(AttendanceReadCard.Properties.Resources.CardPositionSettingData);
+                // XElement attendanceCardData = cardPositionSetting.Document.Element("CardPositionSetting").Element("AttendanceCardData");
                 //每一Row 數幾次 就是 Column 的數量
                 //int perRowcount = int.Parse(attendanceCardData.Element("PerRowCount").Value);
                 //每一Column 數幾次 就是 Row 的數量
-               // int perColumncount = int.Parse(attendanceCardData.Element("PerColumncount").Value);
+                // int perColumncount = int.Parse(attendanceCardData.Element("PerColumncount").Value);
                 //OMRCardReader.Open(35, (int)this.Type); //點名卡規格。66x35 (目前2016/9/2 的版本)
                 //OMRCardReader.Open(perRowcount, perColumncount); //2017/10/23 穎驊修正， 點名卡規格。直接定在xml 檔案中，方便未來管理修正。
-               
-                // 2017/11/14 羿均 修改
-                XDocument cardSettingData = XDocument.Parse(AttendanceReadCard.Properties.Resources.CardSettingData);
+
+                // 2017/11/30 羿均 修改讀取list table的卡片解析設定
+                K12.Data.Configuration.ConfigData _CardSettingData = K12.Data.School.Configuration["CardSettingData"];
+                XDocument cardSettingData = XDocument.Parse(_CardSettingData.PreviousData.OuterXml);
+
                 XElement paper = cardSettingData.Element("CardPositionSetting").Element("Paper");
 
                 int perRowCount = int.Parse(paper.Element("PerRowCount").Value);

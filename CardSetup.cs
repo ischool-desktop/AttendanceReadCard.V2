@@ -32,9 +32,14 @@ namespace AttendanceReadCard
                 //節次對照表。
                 PeriodMapping = new Dictionary<string, string>();
                 PeriodIndex = new Dictionary<string, int>();
-                XDocument cardSettingData = XDocument.Parse(AttendanceReadCard.Properties.Resources.CardSettingData);
+
+                // 2017/11/30 透過config讀取設定
+                K12.Data.Configuration.ConfigData _CardSettingData = K12.Data.School.Configuration["CardSettingData"];
+                XDocument cardSettingData = XDocument.Parse(_CardSettingData.PreviousData.OuterXml);
+
                 List<XElement> period = cardSettingData.Element("CardPositionSetting").Element("MappingAttendance").Elements("Period").ToList();
-                int index = -1;
+                int index = -1; 
+                // 因為讀卡設定功能，已將大部分設定隱藏，所以這邊節次mapping的資料都是直接讀取config 節次設定
                 foreach (XElement p in period)
                 {
                     index++;
@@ -127,23 +132,6 @@ namespace AttendanceReadCard
         /// </summary>
         public Dictionary<string, int> PeriodIndex { get; private set; }
 
-
-
-        //2016/9/2 穎驊註解，不再使用遲、缺
-
-        ///// <summary>
-        ///// 卡片上的「遲」的對應字串。
-        ///// </summary>
-        //public string LateString { get; private set; }
-
-        ///// <summary>
-        ///// 卡片上的「缺」對應字串。
-        ///// </summary>
-        //public string AbsenceString { get; private set; }
-
-
-
-
         /// <summary>
         /// 是否覆蓋現有資料。
         /// </summary>
@@ -232,24 +220,6 @@ namespace AttendanceReadCard
             return result;
         }
 		
-		/// <summary>
-		/// 依據設定轉換請假卡上的資料。
-		/// </summary>
-		/// <param name="xCardData"></param>
-		/// <returns></returns>
-		/// <example>
-		/// <Messages>
-			//<Success>
-			//  <Discipline DateTime="2014/10/3">
-			//	<Period Name="第一節" />
-			//	<Period Name="第五節" />
-			//  </Discipline>
-			//  <AttendanceType>早修/升旗</AttendanceType>
-			//  <StudentNumber>714068</StudentNumber>
-			//</Success>
-		//	  <Failure />
-		//	</Messages>
-		/// </example>
 		public XElement TransformLeaveCardData(XElement xCardData)
 		{
 			XElement source = xCardData;

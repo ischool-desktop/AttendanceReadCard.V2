@@ -80,33 +80,6 @@ namespace AttendanceReadCard.Properties {
         }
         
         /// <summary>
-        ///   查詢類似 &lt;CardPositionSetting&gt;
-        ///  &lt;!--2017/11/08，羿均參考config[學生出缺席讀卡設定]--&gt;
-        ///
-        ///  &lt;!--紙張行、列數--&gt;
-        ///  &lt;Paper&gt;
-        ///    &lt;PerRowCount&gt;35&lt;/PerRowCount&gt;
-        ///    &lt;PerColumnCount&gt;56&lt;/PerColumnCount&gt;
-        ///  &lt;/Paper&gt;
-        ///  &lt;!--第一區塊:年級、班級--&gt;
-        ///  &lt;MappingClass Mode=&quot;classCode&quot;&gt;
-        ///    &lt;GradeYear&gt;
-        ///      &lt;Position Row=&quot;0&quot; Col=&quot;4&quot; Value=&quot;1&quot; /&gt;
-        ///      &lt;Position Row=&quot;0&quot; Col=&quot;5&quot; Value=&quot;2&quot; /&gt;
-        ///      &lt;Position Row=&quot;0&quot; Col=&quot;6&quot; Value=&quot;3&quot; /&gt;
-        ///    &lt;/GradeYear&gt;
-        ///    &lt;Class&gt;
-        ///      &lt;!--4碼組合 依序第一碼、第二碼、第三碼、第四碼--&gt;
-        ///      &lt;Code Position=&quot;1&quot;&gt;
-        ///        &lt;Position Row= [字串的其餘部分已遭截斷]&quot;; 的當地語系化字串。
-        /// </summary>
-        internal static string CardSettingData {
-            get {
-                return ResourceManager.GetString("CardSettingData", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
         internal static System.Drawing.Bitmap ReadCard {
