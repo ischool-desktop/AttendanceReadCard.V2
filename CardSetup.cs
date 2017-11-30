@@ -65,21 +65,20 @@ namespace AttendanceReadCard
                 //}
 
                 //	假別對照表
-                
-                AbsenceTypeMapping = new Dictionary<string, string>();
-				index = -1;
-				foreach (string type in Program.LeaveNameList)
-				{
-					index++;
+    //            AbsenceTypeMapping = new Dictionary<string, string>();
+				//index = -1;
+				//foreach (string type in Program.LeaveNameList)
+				//{
+				//	index++;
 
-					if (AbsenceTypeMapping.ContainsKey(type))
-						throw new Exception("節次對照設定有重覆！");
+				//	if (AbsenceTypeMapping.ContainsKey(type))
+				//		throw new Exception("節次對照設定有重覆！");
 
-					if (string.IsNullOrWhiteSpace(cd[type]))
-						continue;
+				//	if (string.IsNullOrWhiteSpace(cd[type]))
+				//		continue;
 
-					AbsenceTypeMapping.Add(type, cd[type]);
-				}
+				//	AbsenceTypeMapping.Add(type, cd[type]);
+				//}
 
                 //讀取班級對照表。
                 XmlElement xmlclassmap = cd.GetXml("ClassNameMap", null);
