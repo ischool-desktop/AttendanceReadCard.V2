@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnClose = new DevComponents.DotNetBar.ButtonX();
             this.btnSave = new DevComponents.DotNetBar.ButtonX();
             this.intSchoolYear = new DevComponents.Editors.IntegerInput();
@@ -36,11 +36,6 @@
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
             this.dgvAttendance = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.btnBeginRead = new DevComponents.DotNetBar.ButtonX();
-            this.btnAbsence = new DevComponents.DotNetBar.ButtonItem();
-            this.btnLeave = new DevComponents.DotNetBar.ButtonItem();
-            this.labelX3 = new DevComponents.DotNetBar.LabelX();
-            this.intValue = new DevComponents.Editors.IntegerInput();
             this.chDateTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chClassName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chSeatNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,6 +52,11 @@
             this.p8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.p9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.p10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnBeginRead = new DevComponents.DotNetBar.ButtonX();
+            this.btnAbsence = new DevComponents.DotNetBar.ButtonItem();
+            this.btnLeave = new DevComponents.DotNetBar.ButtonItem();
+            this.labelX3 = new DevComponents.DotNetBar.LabelX();
+            this.intValue = new DevComponents.Editors.IntegerInput();
             ((System.ComponentModel.ISupportInitialize)(this.intSchoolYear)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.intSemester)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAttendance)).BeginInit();
@@ -66,7 +66,7 @@
             // btnClose
             // 
             this.btnClose.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnClose.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClose.BackColor = System.Drawing.Color.Transparent;
             this.btnClose.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btnClose.Location = new System.Drawing.Point(848, 465);
@@ -80,7 +80,7 @@
             // btnSave
             // 
             this.btnSave.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnSave.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.BackColor = System.Drawing.Color.Transparent;
             this.btnSave.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btnSave.Location = new System.Drawing.Point(767, 465);
@@ -167,6 +167,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvAttendance.BackgroundColor = System.Drawing.Color.White;
             this.dgvAttendance.CausesValidation = false;
+            this.dgvAttendance.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvAttendance.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.chDateTime,
             this.chClassName,
@@ -184,14 +185,14 @@
             this.p8,
             this.p9,
             this.p10});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvAttendance.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvAttendance.DefaultCellStyle = dataGridViewCellStyle7;
             this.dgvAttendance.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgvAttendance.HighlightSelectedColumnHeaders = false;
             this.dgvAttendance.Location = new System.Drawing.Point(7, 51);
@@ -204,69 +205,6 @@
             this.dgvAttendance.TabIndex = 3;
             this.dgvAttendance.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvAttendance_CellFormatting);
             this.dgvAttendance.SelectionChanged += new System.EventHandler(this.dgvAttendance_SelectionChanged);
-            // 
-            // btnBeginRead
-            // 
-            this.btnBeginRead.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnBeginRead.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnBeginRead.AutoExpandOnClick = true;
-            this.btnBeginRead.BackColor = System.Drawing.Color.Transparent;
-            this.btnBeginRead.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnBeginRead.Location = new System.Drawing.Point(828, 14);
-            this.btnBeginRead.Name = "btnBeginRead";
-            this.btnBeginRead.Size = new System.Drawing.Size(75, 23);
-            this.btnBeginRead.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnBeginRead.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.btnAbsence});
-            this.btnBeginRead.TabIndex = 4;
-            this.btnBeginRead.Text = "開始讀卡";
-            // 
-            // btnAbsence
-            // 
-            this.btnAbsence.GlobalItem = false;
-            this.btnAbsence.Name = "btnAbsence";
-            this.btnAbsence.Text = "點名卡";
-            this.btnAbsence.Click += new System.EventHandler(this.btnAbsence_Click);
-            // 
-            // btnLeave
-            // 
-            this.btnLeave.GlobalItem = false;
-            this.btnLeave.Name = "btnLeave";
-            this.btnLeave.Text = "請假卡";
-            this.btnLeave.Click += new System.EventHandler(this.btnLeave_Click);
-            // 
-            // labelX3
-            // 
-            this.labelX3.AutoSize = true;
-            this.labelX3.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.labelX3.BackgroundStyle.Class = "";
-            this.labelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX3.Location = new System.Drawing.Point(625, 15);
-            this.labelX3.Name = "labelX3";
-            this.labelX3.Size = new System.Drawing.Size(74, 21);
-            this.labelX3.TabIndex = 6;
-            this.labelX3.Text = "濃淡辨識度";
-            // 
-            // intValue
-            // 
-            this.intValue.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.intValue.BackgroundStyle.Class = "DateTimeInputBackground";
-            this.intValue.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.intValue.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
-            this.intValue.Location = new System.Drawing.Point(705, 13);
-            this.intValue.MaxValue = 12;
-            this.intValue.MinValue = 1;
-            this.intValue.Name = "intValue";
-            this.intValue.ShowUpDown = true;
-            this.intValue.Size = new System.Drawing.Size(80, 25);
-            this.intValue.TabIndex = 5;
-            this.intValue.Value = 5;
             // 
             // chDateTime
             // 
@@ -315,109 +253,182 @@
             // 
             // p0
             // 
+            this.p0.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.p0.DataPropertyName = "Period0";
             this.p0.HeaderText = "早修/升旗";
             this.p0.Name = "p0";
             this.p0.ReadOnly = true;
+            this.p0.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.p0.Visible = false;
-            this.p0.Width = 59;
             // 
             // p1
             // 
+            this.p1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.p1.DataPropertyName = "Period1";
             this.p1.HeaderText = "一";
             this.p1.Name = "p1";
             this.p1.ReadOnly = true;
+            this.p1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.p1.Visible = false;
-            this.p1.Width = 59;
             // 
             // p2
             // 
+            this.p2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.p2.DataPropertyName = "Period2";
             this.p2.HeaderText = "二";
             this.p2.Name = "p2";
             this.p2.ReadOnly = true;
+            this.p2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.p2.Visible = false;
-            this.p2.Width = 59;
             // 
             // p3
             // 
+            this.p3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.p3.DataPropertyName = "Period3";
             this.p3.HeaderText = "三";
             this.p3.Name = "p3";
             this.p3.ReadOnly = true;
+            this.p3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.p3.Visible = false;
-            this.p3.Width = 59;
             // 
             // p4
             // 
+            this.p4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.p4.DataPropertyName = "Period4";
             this.p4.HeaderText = "四";
             this.p4.Name = "p4";
             this.p4.ReadOnly = true;
+            this.p4.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.p4.Visible = false;
-            this.p4.Width = 59;
             // 
             // p5
             // 
+            this.p5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.p5.DataPropertyName = "Period5";
             this.p5.HeaderText = "午休";
             this.p5.Name = "p5";
             this.p5.ReadOnly = true;
+            this.p5.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.p5.Visible = false;
-            this.p5.Width = 59;
             // 
             // p6
             // 
+            this.p6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.p6.DataPropertyName = "Period6";
             this.p6.HeaderText = "五";
             this.p6.Name = "p6";
             this.p6.ReadOnly = true;
+            this.p6.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.p6.Visible = false;
-            this.p6.Width = 59;
             // 
             // p7
             // 
+            this.p7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.p7.DataPropertyName = "Period7";
             this.p7.HeaderText = "六";
             this.p7.Name = "p7";
             this.p7.ReadOnly = true;
+            this.p7.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.p7.Visible = false;
-            this.p7.Width = 59;
             // 
             // p8
             // 
+            this.p8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.p8.DataPropertyName = "Period8";
             this.p8.HeaderText = "七";
             this.p8.Name = "p8";
             this.p8.ReadOnly = true;
+            this.p8.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.p8.Visible = false;
-            this.p8.Width = 59;
             // 
             // p9
             // 
+            this.p9.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.p9.DataPropertyName = "Period9";
             this.p9.HeaderText = "八";
             this.p9.Name = "p9";
             this.p9.ReadOnly = true;
+            this.p9.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.p9.Visible = false;
-            this.p9.Width = 59;
             // 
             // p10
             // 
+            this.p10.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.p10.DataPropertyName = "Period10";
             this.p10.HeaderText = "九";
             this.p10.Name = "p10";
             this.p10.ReadOnly = true;
             this.p10.Visible = false;
-            this.p10.Width = 59;
+            // 
+            // btnBeginRead
+            // 
+            this.btnBeginRead.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnBeginRead.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBeginRead.AutoExpandOnClick = true;
+            this.btnBeginRead.BackColor = System.Drawing.Color.Transparent;
+            this.btnBeginRead.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnBeginRead.Location = new System.Drawing.Point(828, 14);
+            this.btnBeginRead.Name = "btnBeginRead";
+            this.btnBeginRead.Size = new System.Drawing.Size(75, 23);
+            this.btnBeginRead.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnBeginRead.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.btnAbsence});
+            this.btnBeginRead.TabIndex = 4;
+            this.btnBeginRead.Text = "開始讀卡";
+            // 
+            // btnAbsence
+            // 
+            this.btnAbsence.GlobalItem = false;
+            this.btnAbsence.Name = "btnAbsence";
+            this.btnAbsence.Text = "點名卡";
+            this.btnAbsence.Click += new System.EventHandler(this.btnAbsence_Click);
+            // 
+            // btnLeave
+            // 
+            this.btnLeave.GlobalItem = false;
+            this.btnLeave.Name = "btnLeave";
+            this.btnLeave.Text = "請假卡";
+            this.btnLeave.Click += new System.EventHandler(this.btnLeave_Click);
+            // 
+            // labelX3
+            // 
+            this.labelX3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelX3.AutoSize = true;
+            this.labelX3.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX3.BackgroundStyle.Class = "";
+            this.labelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX3.Location = new System.Drawing.Point(625, 15);
+            this.labelX3.Name = "labelX3";
+            this.labelX3.Size = new System.Drawing.Size(74, 21);
+            this.labelX3.TabIndex = 6;
+            this.labelX3.Text = "濃淡辨識度";
+            // 
+            // intValue
+            // 
+            this.intValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.intValue.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.intValue.BackgroundStyle.Class = "DateTimeInputBackground";
+            this.intValue.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.intValue.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
+            this.intValue.Location = new System.Drawing.Point(705, 13);
+            this.intValue.MaxValue = 12;
+            this.intValue.MinValue = 1;
+            this.intValue.Name = "intValue";
+            this.intValue.ShowUpDown = true;
+            this.intValue.Size = new System.Drawing.Size(80, 25);
+            this.intValue.TabIndex = 5;
+            this.intValue.Value = 5;
             // 
             // ReadCardForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(947, 499);
             this.Controls.Add(this.labelX3);
             this.Controls.Add(this.intValue);
@@ -430,10 +441,9 @@
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnClose);
             this.DoubleBuffered = true;
-            this.MaximumSize = new System.Drawing.Size(963, 538);
             this.MinimumSize = new System.Drawing.Size(963, 538);
             this.Name = "ReadCardForm";
-            this.Text = "讀卡";
+            this.Text = "出勤讀卡";
             this.Load += new System.EventHandler(this.ReadCardForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.intSchoolYear)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.intSemester)).EndInit();

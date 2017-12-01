@@ -83,7 +83,7 @@
             this.dgvClassMap.RowHeadersWidth = 25;
             this.dgvClassMap.RowTemplate.Height = 24;
             this.dgvClassMap.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvClassMap.Size = new System.Drawing.Size(283, 316);
+            this.dgvClassMap.Size = new System.Drawing.Size(297, 316);
             this.dgvClassMap.TabIndex = 1;
             this.dgvClassMap.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClassMap_CellClick);
             this.dgvClassMap.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dgvClassMap_KeyUp);
@@ -174,7 +174,7 @@
             this.dgvPeriodMap.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvPeriodMap.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgvPeriodMap.HighlightSelectedColumnHeaders = false;
-            this.dgvPeriodMap.Location = new System.Drawing.Point(427, 38);
+            this.dgvPeriodMap.Location = new System.Drawing.Point(434, 38);
             this.dgvPeriodMap.Margin = new System.Windows.Forms.Padding(2);
             this.dgvPeriodMap.Name = "dgvPeriodMap";
             this.dgvPeriodMap.RowHeadersWidth = 25;
@@ -260,7 +260,7 @@
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.BackColor = System.Drawing.Color.Transparent;
             this.btnSave.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSave.Location = new System.Drawing.Point(136, 393);
+            this.btnSave.Location = new System.Drawing.Point(150, 393);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -274,7 +274,7 @@
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClose.BackColor = System.Drawing.Color.Transparent;
             this.btnClose.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnClose.Location = new System.Drawing.Point(220, 393);
+            this.btnClose.Location = new System.Drawing.Point(234, 393);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
             this.btnClose.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -380,7 +380,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(306, 427);
+            this.ClientSize = new System.Drawing.Size(320, 427);
             this.Controls.Add(this.cboReadingCardStartYear);
             this.Controls.Add(this.labelX8);
             this.Controls.Add(this.cboOverride);
@@ -396,6 +396,8 @@
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximumSize = new System.Drawing.Size(336, 466);
+            this.MinimumSize = new System.Drawing.Size(336, 466);
             this.Name = "SetupForm";
             this.Text = "學生出缺席讀卡設定";
             this.Load += new System.EventHandler(this.SetupForm_Load);
