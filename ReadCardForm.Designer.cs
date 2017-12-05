@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnClose = new DevComponents.DotNetBar.ButtonX();
             this.btnSave = new DevComponents.DotNetBar.ButtonX();
             this.intSchoolYear = new DevComponents.Editors.IntegerInput();
@@ -52,11 +52,10 @@
             this.p8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.p9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.p10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnBeginRead = new DevComponents.DotNetBar.ButtonX();
-            this.btnAbsence = new DevComponents.DotNetBar.ButtonItem();
             this.btnLeave = new DevComponents.DotNetBar.ButtonItem();
             this.labelX3 = new DevComponents.DotNetBar.LabelX();
             this.intValue = new DevComponents.Editors.IntegerInput();
+            this.StarReadCardbtn = new DevComponents.DotNetBar.ButtonX();
             ((System.ComponentModel.ISupportInitialize)(this.intSchoolYear)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.intSemester)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAttendance)).BeginInit();
@@ -185,14 +184,14 @@
             this.p8,
             this.p9,
             this.p10});
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvAttendance.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvAttendance.DefaultCellStyle = dataGridViewCellStyle5;
             this.dgvAttendance.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgvAttendance.HighlightSelectedColumnHeaders = false;
             this.dgvAttendance.Location = new System.Drawing.Point(7, 51);
@@ -360,29 +359,6 @@
             this.p10.ReadOnly = true;
             this.p10.Visible = false;
             // 
-            // btnBeginRead
-            // 
-            this.btnBeginRead.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnBeginRead.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBeginRead.AutoExpandOnClick = true;
-            this.btnBeginRead.BackColor = System.Drawing.Color.Transparent;
-            this.btnBeginRead.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnBeginRead.Location = new System.Drawing.Point(828, 14);
-            this.btnBeginRead.Name = "btnBeginRead";
-            this.btnBeginRead.Size = new System.Drawing.Size(75, 23);
-            this.btnBeginRead.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnBeginRead.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.btnAbsence});
-            this.btnBeginRead.TabIndex = 4;
-            this.btnBeginRead.Text = "開始讀卡";
-            // 
-            // btnAbsence
-            // 
-            this.btnAbsence.GlobalItem = false;
-            this.btnAbsence.Name = "btnAbsence";
-            this.btnAbsence.Text = "點名卡";
-            this.btnAbsence.Click += new System.EventHandler(this.btnAbsence_Click);
-            // 
             // btnLeave
             // 
             this.btnLeave.GlobalItem = false;
@@ -425,14 +401,27 @@
             this.intValue.TabIndex = 5;
             this.intValue.Value = 5;
             // 
+            // StarReadCardbtn
+            // 
+            this.StarReadCardbtn.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.StarReadCardbtn.BackColor = System.Drawing.Color.Transparent;
+            this.StarReadCardbtn.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.StarReadCardbtn.Location = new System.Drawing.Point(827, 14);
+            this.StarReadCardbtn.Name = "StarReadCardbtn";
+            this.StarReadCardbtn.Size = new System.Drawing.Size(95, 23);
+            this.StarReadCardbtn.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.StarReadCardbtn.TabIndex = 7;
+            this.StarReadCardbtn.Text = "開始點名讀卡";
+            this.StarReadCardbtn.Click += new System.EventHandler(this.StarReadCardbtn_Click);
+            // 
             // ReadCardForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(947, 499);
+            this.Controls.Add(this.StarReadCardbtn);
             this.Controls.Add(this.labelX3);
             this.Controls.Add(this.intValue);
-            this.Controls.Add(this.btnBeginRead);
             this.Controls.Add(this.dgvAttendance);
             this.Controls.Add(this.labelX2);
             this.Controls.Add(this.labelX1);
@@ -463,8 +452,6 @@
         private DevComponents.DotNetBar.LabelX labelX1;
         private DevComponents.DotNetBar.LabelX labelX2;
         private DevComponents.DotNetBar.Controls.DataGridViewX dgvAttendance;
-		private DevComponents.DotNetBar.ButtonX btnBeginRead;
-		private DevComponents.DotNetBar.ButtonItem btnAbsence;
         private DevComponents.DotNetBar.ButtonItem btnLeave;
         private DevComponents.DotNetBar.LabelX labelX3;
         private DevComponents.Editors.IntegerInput intValue;
@@ -484,5 +471,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn p8;
         private System.Windows.Forms.DataGridViewTextBoxColumn p9;
         private System.Windows.Forms.DataGridViewTextBoxColumn p10;
+        private DevComponents.DotNetBar.ButtonX StarReadCardbtn;
     }
 }
