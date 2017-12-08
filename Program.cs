@@ -41,6 +41,14 @@ namespace AttendanceReadCard
                 new ReadCardForm().ShowDialog();
             };
 
+            // 2017/12/07，羿均，新增【讀取卡片資訊】功能
+            MenuButton mb = MotherForm.RibbonBarItems["學務作業", "讀卡系統"]["讀取卡片資訊"];
+            mb.Enable = true;
+            mb.Click += delegate
+            {
+                new ReadCardInformation().ShowDialog();
+            };
+
             Catalog catalog = RoleAclSource.Instance["學務作業"]["功能按鈕"];
             catalog.Add(new RibbonFeature(SetupFormCoode, "出勤讀卡設定"));
             catalog.Add(new RibbonFeature(ReadCardFormCode, "出勤讀卡"));
