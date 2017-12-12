@@ -43,7 +43,7 @@
             this.groupPanel1.Controls.Add(this.labelX1);
             this.groupPanel1.Location = new System.Drawing.Point(12, 12);
             this.groupPanel1.Name = "groupPanel1";
-            this.groupPanel1.Size = new System.Drawing.Size(318, 121);
+            this.groupPanel1.Size = new System.Drawing.Size(318, 155);
             // 
             // 
             // 
@@ -86,16 +86,18 @@
             this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX1.Location = new System.Drawing.Point(3, 3);
             this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(297, 49);
+            this.labelX1.Size = new System.Drawing.Size(306, 122);
             this.labelX1.TabIndex = 1;
-            this.labelX1.Text = "*注意事項:\r\n為了能夠正確的解析卡片，\r\n請將卡紙上每一列第一個圓圈塗滿";
+            this.labelX1.Text = "*畫記說明:\r\n1.為了能夠取得正確的卡片解析，請將卡紙上每\r\n    個資料項目的每一列的第一個圓圈確實塗黑。\r\n2.請將確實塗黑後的卡紙放進讀卡機，並按下\r\n" +
+    "  『匯出讀卡解析』之按鈕。\r\n3.將匯出的\"讀卡解析.txt\"傳至客服信箱。";
             // 
             // ExitBtn
             // 
             this.ExitBtn.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.ExitBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ExitBtn.BackColor = System.Drawing.Color.Transparent;
             this.ExitBtn.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.ExitBtn.Location = new System.Drawing.Point(255, 146);
+            this.ExitBtn.Location = new System.Drawing.Point(255, 184);
             this.ExitBtn.Name = "ExitBtn";
             this.ExitBtn.Size = new System.Drawing.Size(75, 23);
             this.ExitBtn.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -106,9 +108,10 @@
             // ExportCardDatabtn
             // 
             this.ExportCardDatabtn.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.ExportCardDatabtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ExportCardDatabtn.BackColor = System.Drawing.Color.Transparent;
             this.ExportCardDatabtn.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.ExportCardDatabtn.Location = new System.Drawing.Point(118, 146);
+            this.ExportCardDatabtn.Location = new System.Drawing.Point(118, 184);
             this.ExportCardDatabtn.Name = "ExportCardDatabtn";
             this.ExportCardDatabtn.Size = new System.Drawing.Size(106, 23);
             this.ExportCardDatabtn.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -120,11 +123,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(345, 178);
+            this.ClientSize = new System.Drawing.Size(345, 216);
             this.Controls.Add(this.ExportCardDatabtn);
             this.Controls.Add(this.ExitBtn);
             this.Controls.Add(this.groupPanel1);
             this.DoubleBuffered = true;
+            this.MaximumSize = new System.Drawing.Size(361, 255);
+            this.MinimumSize = new System.Drawing.Size(361, 255);
             this.Name = "ReadCardInformation";
             this.Text = "讀取卡片資訊";
             this.groupPanel1.ResumeLayout(false);

@@ -17,8 +17,7 @@ namespace AttendanceReadCard
 {
     public partial class ReadCardForm : BaseForm
     {
-        //2016/8/31  穎驊 新增動態依據讀卡上的起始年，使用者可以調整設定
-        //ConfigData Config { get; set; }
+        ConfigData Config { get; set; }
 
         /// <summary>
         /// 讀卡設定。
