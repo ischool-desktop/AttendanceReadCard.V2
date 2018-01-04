@@ -384,17 +384,17 @@ namespace AttendanceReadCard
 
 				XElement srcdata = crf.XmlResult;
 
-				//XElement srcdata = XElement.Load("LeaveExampleData.xml");
-				//<AttendanceData>
-				//<StudentNumber>714068</StudentNumber>
-				//<AttendanceType>事</AttendanceType>
-				//<Attendance DateTime="2014/10/1">
-				//	<Period Name="一" />
-				//</Attendance>
-				//<Attendance DateTime="2014/10/3">
-				//	<Period Name="五" />
-				//</Attendance>
-				//</AttendanceData>
+                //XElement srcdata = XElement.Load("LeaveExampleData.xml");
+                //<AttendanceData>
+                //<StudentNumber>714068</StudentNumber>
+                //<AttendanceType>事</AttendanceType>
+                //<Attendance DateTime="2014/10/1">
+                //	<Period Name="一" />
+                //</Attendance>
+                //<Attendance DateTime="2014/10/3">
+                //	<Period Name="五" />
+                //</Attendance>
+                //</AttendanceData>
 
 				foreach (XElement attData in srcdata.Elements("AttendanceData"))
 				{
@@ -575,10 +575,23 @@ namespace AttendanceReadCard
 
                 //XElement srcdata = XElement.Load("ExampleData.xml");
 
+                // 2018/1/4，羿均，因應文華訪談需求，新增讀卡張數統計以及日期張數的統計以MessageBox顯示
+                Dictionary<string, int> contentDIC = new Dictionary<string, int>();
+                
                 foreach (XElement attData in srcdata.Elements("AttendanceData"))
                 {
                     string className = attData.ElementText("ClassName");
                     string dateTime = attData.ElementText("DateTime");
+                    //--
+                    if (contentDIC.ContainsKey(dateTime))
+                    {
+                        contentDIC[dateTime] = contentDIC[dateTime]++;
+                    }
+                    if (!contentDIC.ContainsKey(dateTime))
+                    {
+                        contentDIC.Add(dateTime, 1);
+                    }
+                    
 
                     ClassDateTime cdt = new ClassDateTime(className, dateTime);
 
@@ -615,6 +628,14 @@ namespace AttendanceReadCard
                 }
 
                 dgvAttendance.DataSource = Classes.GetBindingList();
+
+                //2018/1/4 顯示讀卡張數統計
+                string content = "";
+                foreach (string c in contentDIC.Keys)
+                {
+                    content += c +": "+ contentDIC[c] + "張" +"\r\n" ;
+                }
+                MessageBox.Show("讀卡總張數: " + contentDIC.Values.Sum() + "張" + "\r\n" + content);
 
                 List<string> studentid_list = GroupStudentID();
                 //將資料庫中的缺曠記錄讀出來。

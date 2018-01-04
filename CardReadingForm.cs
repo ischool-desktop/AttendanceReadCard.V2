@@ -87,7 +87,7 @@ namespace AttendanceReadCard
 
                 byte[] data; //儲存讀進來的 Binary 資料。
                 Exception error; //讀卡錯誤資訊。
-
+                
                 while (true)
                 {
                     if (ReadingTask.CancellationPending)
